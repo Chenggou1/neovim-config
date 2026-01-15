@@ -7,6 +7,9 @@ function M.setup()
 		vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = desc })
 	end
 
+	-- Insert 模式：使用 jk 退出到 Normal 模式（保留 ESC 键用于其他工具）
+	map("i", "jk", "<Esc>", "退出 Insert 模式")
+
 	-- 使用 <leader>y 将选中文本复制到系统剪贴板
 	map({ "n", "v" }, "<leader>y", '"+y', "复制到系统剪贴板")
 

@@ -38,8 +38,8 @@ function M.setup(term1, term2, float_term)
 	vim.keymap.set("n", "<leader>tq", kill_focused_toggleterm, { desc = "关闭当前 ToggleTerm (kill)" })
 	vim.keymap.set("n", "<leader>tQ", kill_all_toggleterms, { desc = "关闭全部 ToggleTerm (kill all)" })
 
-	-- Terminal mode：使用 Esc 退出到 Normal mode，或用 Ctrl 快捷键
-	vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, desc = "退出终端模式" })
+	-- Terminal mode：使用 jk 退出到 Normal mode（保留 ESC 用于终端程序如 Claude Code）
+	vim.keymap.set("t", "jk", [[<C-\><C-n>]], { noremap = true, desc = "退出终端模式" })
 	vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { desc = "切换到左侧窗口" })
 	vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "切换到右侧窗口" })
 end

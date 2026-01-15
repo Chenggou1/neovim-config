@@ -25,6 +25,14 @@ return {
 			{ "<leader>v", group = "Venv" },
 			{ "<leader>z", group = "折叠" },
 
+			-- g 开头的注释快捷键（Comment.nvim）
+			{ "gc", group = "注释" },
+			{ "gcc", desc = "注释/取消注释当前行" },
+			{ "gbc", desc = "块注释当前行" },
+			{ "gco", desc = "在下方插入注释" },
+			{ "gcO", desc = "在上方插入注释" },
+			{ "gcA", desc = "在行尾添加注释" },
+
 			-- 隐藏数字快捷键（标签页跳转），避免在 which-key 中显示
 			{ "<leader>1", hidden = true },
 			{ "<leader>2", hidden = true },
