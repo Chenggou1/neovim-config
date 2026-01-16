@@ -55,11 +55,17 @@ return {
 		local Terminal = require("toggleterm.terminal").Terminal
         local function with_on_open(term)
             term.on_open = function(t)
+                -- 只在首次打开时激活 venv，避免重复激活
+                if t._venv_activated then
+                    return
+                end
+
                 local python = require("core.python")
                 local cmd = python.activation_command()
                 if cmd and cmd ~= "" then
                     t:send(cmd)
                     t:send("\r")
+                    t._venv_activated = true  -- 标记为已激活
                 end
             end
             return term

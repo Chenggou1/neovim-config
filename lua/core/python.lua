@@ -266,7 +266,7 @@ function M.activation_command()
     if shell == "zsh" or shell == "bash" then
         local activate = venv .. sep .. (sep == "\\" and "Scripts\\activate" or "bin/activate")
         -- Only source when $VIRTUAL_ENV is set (it will be set by Neovim) to avoid accidental project picking
-        return string.format("[ -n \"$VIRTUAL_ENV\" ] && source \"%s\"", activate)
+        return string.format("test -n \"$VIRTUAL_ENV\" && source \"%s\"", activate)
     end
 
     -- PowerShell (Windows)
@@ -277,7 +277,7 @@ function M.activation_command()
 
     -- Fallback: POSIX compatible
     local activate = venv .. sep .. (sep == "\\" and "Scripts\\activate" or "bin/activate")
-    return string.format("[ -n \"$VIRTUAL_ENV\" ] && . \"%s\"", activate)
+    return string.format("test -n \"$VIRTUAL_ENV\" && . \"%s\"", activate)
 end
 
 return M
