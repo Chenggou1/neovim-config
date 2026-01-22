@@ -27,21 +27,10 @@ local function get_tabpage_terminals()
     return tabpage_terminals[tabpage_id], tabpage_id
 end
 
--- 创建带 venv 激活的 on_open 回调
+-- 创建终端打开回调（venv 自动激活由 venv-selector.nvim 插件处理）
 local function create_on_open_callback()
     return function(t)
-        -- 只在首次打开时激活 venv，避免重复激活
-        if t._venv_activated then
-            return
-        end
-
-        local python = require("core.python")
-        local cmd = python.activation_command()
-        if cmd and cmd ~= "" then
-            t:send(cmd)
-            t:send("\r")
-            t._venv_activated = true  -- 标记为已激活
-        end
+        -- 保留此函数以便将来添加自定义终端初始化逻辑
     end
 end
 

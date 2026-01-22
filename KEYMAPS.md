@@ -516,9 +516,23 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 
 ## Python 开发
 
-| 快捷键       | 功能                          |
-| ------------ | ----------------------------- |
-| `<leader>va` | 激活项目 .venv 并重启 Pyright |
+| 快捷键       | 功能                                    |
+| ------------ | --------------------------------------- |
+| `<leader>vs` | 选择/激活 Python 虚拟环境（Telescope）  |
+| `<leader>vd` | 停用当前 Python 虚拟环境                |
+
+💡 **提示**：
+- `<leader>vs` 打开 Telescope 选择器，支持：
+  - 项目 `.venv` 目录（uv、virtualenv）
+  - Poetry 环境
+  - Conda/Miniconda 环境
+  - 系统 Python
+- 选择环境后自动：
+  - 重启 Pyright LSP
+  - 激活终端 shell 环境
+  - 缓存选择（下次自动激活）
+- `<leader>vd` 停用后恢复使用系统 Python
+- 状态栏左侧显示当前激活的环境名（如 "󰌠 .venv"）
 
 ---
 

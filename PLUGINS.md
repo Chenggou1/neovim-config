@@ -42,6 +42,10 @@
 **仓库**: `neovim/nvim-lspconfig`
 **作用**: LSP 客户端配置，支持 Pyright (Python)、clangd (C/C++)、jsonls (JSON)、marksman (Markdown)
 
+### venv-selector.nvim
+**仓库**: `linux-cultist/venv-selector.nvim`
+**作用**: Python 虚拟环境选择器，支持 .venv、Poetry、Conda 等环境，自动配置 LSP 和终端激活
+
 ### mason.nvim
 **仓库**: `mason-org/mason.nvim`
 **作用**: LSP 服务器、DAP、Linter、Formatter 的统一管理器

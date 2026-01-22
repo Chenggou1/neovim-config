@@ -22,10 +22,7 @@ function M.setup()
 
 	-- 折叠快捷键由 nvim-ufo 插件统一管理
 
-	-- Python：一键激活项目 .venv 并重启 Pyright
-	map("n", "<leader>va", function()
-		require("core.python").activate_project_venv()
-	end, "激活项目 .venv 并重启 Pyright")
+	-- Python 虚拟环境管理由 venv-selector.nvim 插件提供（<leader>vs 选择，<leader>vd 停用）
 
 	-- 历史导航：Leader+方向键 后退/前进
 	map("n", "<leader><Left>", "<C-o>", "返回上一位置")

@@ -2,10 +2,17 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		local python = require("core.python")
+		-- Python 虚拟环境显示（使用 venv-selector.nvim API）
 		local function python_env()
-			local name = python.venv_name()
-			if name then
+			local ok, venv_selector = pcall(require, "venv-selector")
+			if not ok then
+				return ""
+			end
+
+			local venv = venv_selector.venv()
+			if venv and venv ~= "" then
+				-- 提取虚拟环境名称（路径最后一个目录）
+				local name = vim.fn.fnamemodify(venv, ":t")
 				return "󰌠 " .. name
 			end
 			return ""
