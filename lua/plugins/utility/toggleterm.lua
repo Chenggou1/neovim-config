@@ -40,64 +40,39 @@ return {
 	"akinsho/toggleterm.nvim",
 	version = "*",
 	config = function()
-    require("toggleterm").setup({
-			size = 15,
-			open_mapping = [[<C-\>]],
-			hide_numbers = true,
-			shade_terminals = true,
-			start_in_insert = true,
-			persist_size = true,
-			direction = "horizontal",
-			close_on_exit = true,
+        require("toggleterm").setup({
+            size = 15,
+            open_mapping = [[<C-\>]],
+            hide_numbers = true,
+            shade_terminals = true,
+            start_in_insert = true,
+            persist_size = true,
+            direction = "horizontal",
+            close_on_exit = true,
             shell = utils.get_preferred_shell(),
-		})
+        })
 
-		local Terminal = require("toggleterm.terminal").Terminal
-        local function with_on_open(term)
-            term.on_open = function(t)
-                -- 只在首次打开时激活 venv，避免重复激活
-                if t._venv_activated then
-                    return
-                end
+        -- 初始化终端管理器
+        local term_manager = require("core.term_manager")
+        term_manager.setup_autocmds()
 
-                local python = require("core.python")
-                local cmd = python.activation_command()
-                if cmd and cmd ~= "" then
-                    t:send(cmd)
-                    t:send("\r")
-                    t._venv_activated = true  -- 标记为已激活
-                end
-            end
-            return term
-        end
-
-        local term1 = with_on_open(Terminal:new({ count = 1, direction = "horizontal" }))
-        local term2 = with_on_open(Terminal:new({ count = 2, direction = "horizontal" }))
-        local float_term = with_on_open(Terminal:new({ direction = "float" }))
-
-        -- 统一包装一个带 cwd 校准的切换函数
-        local function toggle_with_cwd(term, size, direction)
-          term.dir = resolve_desired_cwd()
-          term:toggle(size, direction)
-        end
-
-        -- 使用原有的外部键位模块，随后用相同按键覆盖，确保目录正确
+        -- 设置键位绑定
         local ok_keys, keys_mod = pcall(require, "core.keymaps.toggleterm")
         if ok_keys and keys_mod and type(keys_mod.setup) == "function" then
-          keys_mod.setup(term1, term2, float_term)
+            keys_mod.setup(term_manager, resolve_desired_cwd)
         end
 
-        -- 覆盖/补充键位：打开前设置到 neo-tree 根目录
+        -- 主键位（使用终端管理器）
         vim.keymap.set("n", "<leader>t1", function()
-          toggle_with_cwd(term1)
+            term_manager.toggle_terminal("term1", resolve_desired_cwd)
         end, { desc = "切换终端 1" })
 
         vim.keymap.set("n", "<leader>t2", function()
-          toggle_with_cwd(term2)
+            term_manager.toggle_terminal("term2", resolve_desired_cwd)
         end, { desc = "切换终端 2" })
 
         vim.keymap.set("n", "<leader>tf", function()
-          toggle_with_cwd(float_term)
+            term_manager.toggle_terminal("float_term", resolve_desired_cwd)
         end, { desc = "浮动终端" })
     end,
 }

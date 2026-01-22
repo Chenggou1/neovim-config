@@ -1,14 +1,17 @@
 local M = {}
 
-function M.setup(term1, term2, float_term)
+function M.setup(term_manager, resolve_cwd_fn)
+	-- 主键位（使用终端管理器）
 	vim.keymap.set("n", "<leader>t1", function()
-		term1:toggle()
+		term_manager.toggle_terminal("term1", resolve_cwd_fn)
 	end, { desc = "切换终端 1" })
+
 	vim.keymap.set("n", "<leader>t2", function()
-		term2:toggle()
+		term_manager.toggle_terminal("term2", resolve_cwd_fn)
 	end, { desc = "切换终端 2" })
+
 	vim.keymap.set("n", "<leader>tf", function()
-		float_term:toggle()
+		term_manager.toggle_terminal("float_term", resolve_cwd_fn)
 	end, { desc = "浮动终端" })
 
 	-- 彻底关闭（杀死）当前聚焦的 ToggleTerm 终端
