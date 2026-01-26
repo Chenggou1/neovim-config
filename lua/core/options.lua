@@ -42,9 +42,9 @@ if vim.g.neovide then
 	-- 字体设置
 	vim.o.guifont = "JetBrainsMono Nerd Font:h14"
 
-	-- 透明度和背景
+	-- 透明度设置（0.14.0+ 版本推荐配置）
 	vim.g.neovide_opacity = 0.85 -- 窗口不透明度 0~1，可用 Alt+=/- 调整
-	vim.g.neovide_background_color = "#0f1117" .. string.format("%x", math.floor(255 * 0.85))
+	-- neovide_background_color 已废弃，移除以避免与 opacity 冲突（macOS 特别重要）
 	vim.g.neovide_floating_blur_amount_x = 2.0
 	vim.g.neovide_floating_blur_amount_y = 2.0
 
