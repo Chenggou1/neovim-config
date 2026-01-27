@@ -16,9 +16,9 @@ function M.setup()
 	-- 使用 <leader>p 从系统剪贴板粘贴
 	map({ "n", "v" }, "<leader>p", '"+p', "粘贴系统剪贴板")
 
-	-- Normal 和 Visual 模式：H 跳行首（^），L 跳行尾（$）
-	map({ "n", "v" }, "H", "^", "Jump to line start (non-blank)")
-	map({ "n", "v" }, "L", "$", "Jump to line end")
+	-- Normal、Visual 和 Operator-pending 模式：H 跳行首（^），L 跳行尾（$）
+	map({ "n", "v", "o" }, "H", "^", "Jump to line start (non-blank)")
+	map({ "n", "v", "o" }, "L", "$", "Jump to line end")
 
 	-- 折叠快捷键由 nvim-ufo 插件统一管理
 
