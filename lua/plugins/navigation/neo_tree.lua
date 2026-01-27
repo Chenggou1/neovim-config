@@ -50,7 +50,7 @@ return {
 				window = { position = "left", width = 30 },
 			},
 
-			-- ✨ Git 符号（ASCII 简洁版）
+			-- ✨ Git 符号
 			default_component_configs = {
 				git_status = {
 					align = "right",
@@ -61,7 +61,7 @@ return {
 						renamed = ">",
 						untracked = "?",
 						ignored = "i",
-						staged = "✔",
+						staged = "S",
 						conflict = "!",
 						unstaged = "?",
 					},
@@ -69,7 +69,6 @@ return {
 			},
 		})
 
-		-- VSCode 风格的 Git 文件状态配色
 		vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { fg = "#73C991" }) -- 绿色（未追踪）
 		vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = "#E5C07B" }) -- 黄色（修改）
 		vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = "#98C379" }) -- 亮绿（新增）
