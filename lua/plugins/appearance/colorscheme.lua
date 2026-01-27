@@ -13,7 +13,7 @@ return {
 				functions = "NONE",       -- 函数名不装饰（保持清晰）
 				variables = "NONE",       -- 变量不装饰（避免过度）
 				strings = "NONE",         -- 字符串不装饰
-				types = "NONE",           -- 类型不装饰（可选: "bold" 增强可见性）
+				types = "bold",           -- 类型使用"bold" 增强可见性
 
 				-- 其他元素
 				methods = "NONE",
@@ -30,7 +30,7 @@ return {
 		})
 
 		-- 应用主题（在 setup 之后）
-		vim.cmd("colorscheme onedark")
+		vim.cmd("colorscheme onedark_vivid")
 
 
 	end,

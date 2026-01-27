@@ -6,10 +6,10 @@ opt.fileencoding = "utf-8" -- 新建文件的默认编码
 opt.fileencodings = "utf-8,gbk,gb2312,big5" -- 自动检测文件编码顺序
 
 -- 行号设置
--- 同时开启相对行号和绝对行号，
--- 相对行号便于配合数字做跳转，
--- 绝对行号方便精确定位到某一行
-opt.relativenumber = true -- 显示相对行号
+-- Normal 模式：相对行号（便于跳转，如 10j）
+-- Insert 模式：绝对行号（便于定位具体行）
+-- 动态切换由 nvim-numbertoggle 插件自动处理
+opt.relativenumber = true -- 默认显示相对行号
 opt.number = true -- 显示当前行的绝对行号
 
 -- 缩进相关设置
@@ -25,8 +25,6 @@ opt.autoindent = true -- 新行默认继承上一行的缩进
 opt.cursorline = true -- 高亮当前行，提升可读性
 
 -- 键位映射超时时间
--- 减少 leader 键延迟，按下空格后等待后续按键的时间（毫秒）
--- 默认值 1000ms 太长，300-500ms 是比较合适的平衡值
 opt.timeoutlen = 300 -- 等待按键序列完成的时间
 opt.ttimeoutlen = 10 -- 等待键码序列完成的时间（影响 Esc 响应速度）
 

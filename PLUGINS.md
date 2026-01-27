@@ -34,6 +34,15 @@
 **仓库**: `lukas-reineke/indent-blankline.nvim`
 **作用**: 缩进参考线，显示代码缩进层级，当前作用域使用绿色粗线高亮
 
+### noice.nvim
+**仓库**: `folke/noice.nvim`
+**作用**: 现代化 UI 框架，增强命令行、消息通知和搜索界面的视觉体验
+**依赖**: `MunifTanjim/nui.nvim`, `rcarriga/nvim-notify`
+
+### nvim-notify
+**仓库**: `rcarriga/nvim-notify`
+**作用**: 美化通知系统，提供动画效果和多种通知样式
+
 ---
 
 ## 开发工具（Dev）
@@ -179,6 +188,14 @@
 **作用**: 现代化代码折叠插件，使用 Treesitter 提供智能折叠，折叠时完整显示第一行内容（类似 VSCode），支持折叠预览和导航
 **依赖**: `kevinhwang91/promise-async`
 
+### nvim-autopairs
+**仓库**: `windwp/nvim-autopairs`
+**作用**: 自动配对括号、引号等符号，支持智能删除配对符号
+
+### nvim-numbertoggle
+**仓库**: `sitiom/nvim-numbertoggle`
+**作用**: 自动切换行号显示模式，Normal 模式显示相对行号（便于跳转），Insert 模式显示绝对行号（便于定位）
+
 ---
 
 ## Git 集成（Git）
@@ -219,10 +236,12 @@
 
 ## 统计
 
-**总计**: 42 个插件
-- 外观: 7 个
+**总计**: 46 个插件
+- 外观: 9 个
 - 开发工具: 21 个
 - 导航: 7 个
-- 实用工具: 4 个
+- 实用工具: 6 个
 - Git 集成: 3 个
 - 依赖库: 4 个
+
+注：部分插件作为依赖被其他插件引入（如 nvim-notify 是 noice.nvim 的依赖），已计入统计

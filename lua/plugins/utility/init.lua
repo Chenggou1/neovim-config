@@ -5,4 +5,5 @@ return {
 	require("plugins.utility.markview"),
 	require("plugins.utility.nvim_ufo"),
 	require("plugins.utility.autopairs"),
+	require("plugins.utility.nvim_numbertoggle"),
 }

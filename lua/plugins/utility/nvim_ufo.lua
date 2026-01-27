@@ -5,7 +5,7 @@ return {
 
 	config = function()
 		-- 必需的折叠选项配置
-		vim.o.foldcolumn = "1"
+		vim.o.foldcolumn = "0" -- 不显示折叠层级数字（已有缩进线）
 		vim.o.foldlevel = 99
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
