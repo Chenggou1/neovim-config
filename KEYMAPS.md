@@ -91,16 +91,16 @@
 | `<C-k>` | 移动到上方窗口 |
 | `<C-l>` | 移动到右侧窗口 |
 
-### 窗口大小调整
+💡 **提示**：
+- 窗口导航由 **smart-splits.nvim** 插件提供，支持 tmux/wezterm/kitty 集成
+- 在 tmux 环境中，`<C-h/j/k/l>` 可以无缝地在 Neovim 窗口和 tmux pane 之间切换
 
-| 快捷键       | 功能             |
-| ------------ | ---------------- |
-| `<leader>h` | 向左调整窗口大小 |
-| `<leader>j` | 向下调整窗口大小 |
-| `<leader>k` | 向上调整窗口大小 |
-| `<leader>l` | 向右调整窗口大小 |
-
-💡 **提示**：也可以用鼠标拖动窗口分隔线调整大小
+**窗口大小调整**：
+- 鼠标拖动窗口分隔线调整大小
+- Vim 原生命令：
+  - `<C-w>>` / `<C-w><`：增加/减少当前窗口宽度
+  - `<C-w>+` / `<C-w>-`：增加/减少当前窗口高度
+  - `<C-w>=`：平均分配所有窗口大小
 
 ---
 
@@ -603,7 +603,6 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | `<leader>g` | Git 操作（Graph/Diff/History）      |
 | `<leader>o` | 帮助（Help）                        |
 | `<leader>m` | CMake 构建                          |
-| `<leader>r` | 窗口调整（Resize）                  |
 | `<leader>t` | 终端（Terminal）                    |
 | `<leader>v` | Python 虚拟环境（Venv）             |
 | `<leader>z` | 折叠（Fold）                        |

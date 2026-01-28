@@ -4,7 +4,9 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-tree/nvim-web-devicons",
 	},
-	keys = require("core.keymaps.aerial").keys,
+	keys = {
+		{ "<leader>a", "<cmd>AerialToggle<cr>", desc = "代码大纲" },
+	},
 	cmd = {
 		"AerialToggle",
 		"AerialOpen",
@@ -76,8 +78,7 @@ return {
 			min_height = 4,
 		},
 
-		-- 在 aerial 窗口中启用符号导航快捷键
-		on_attach = require("core.keymaps.aerial").on_attach,
+		-- 在 aerial 窗口中使用默认快捷键
 
 		-- 关闭时的行为
 		close_behavior = "auto",
