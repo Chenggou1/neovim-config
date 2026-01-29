@@ -27,7 +27,12 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff" },
-				lualine_c = { "filename" },
+				lualine_c = {
+					{
+						"filename",
+						path = 1, -- 0: 只显示文件名, 1: 相对路径, 2: 绝对路径, 3: 智能路径
+					},
+				},
 				lualine_x = { python_env, "encoding", "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
