@@ -11,4 +11,4 @@ return {
 			position = "right", -- 在右侧打开
 		},
 	},
-
+}
