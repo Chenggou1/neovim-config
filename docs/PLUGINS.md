@@ -131,8 +131,8 @@
 **仓库**: `JoosepAlviste/nvim-ts-context-commentstring`
 **作用**: Treesitter 注释字符串上下文支持，为 Comment.nvim 提供 JSX/TSX 等复杂语法的注释支持
 
-### codeium.nvim (windsurf.nvim)
-**仓库**: `Exafunction/codeium.nvim`
+### windsurf.nvim (Codeium)
+**仓库**: `Exafunction/windsurf.nvim`
 **作用**: Codeium AI 代码补全，支持虚拟文本（灰色幽灵文字）和补全菜单集成
 
 ---
@@ -163,8 +163,8 @@
 **仓库**: `ahmedkhalf/project.nvim`
 **作用**: 项目管理插件，自动检测和记录项目（通过 .git、pyproject.toml 等），提供最近项目列表，与启动面板集成
 
-### aerial.nvim
-**仓库**: `stevearc/aerial.nvim`
+### outline.nvim
+**仓库**: `hedyhli/outline.nvim`
 **作用**: 代码大纲侧边栏，显示文件中的类、函数、方法等符号结构，支持 LSP 和 TreeSitter，提供快速导航和符号跳转
 
 ---

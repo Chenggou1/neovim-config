@@ -8,7 +8,7 @@
 
 - 🐬 **启动面板**：alpha-nvim 启动界面，海豚 ASCII 艺术，最近项目快速访问
 - 🎨 **外观**：One Dark Pro 主题，透明背景支持，which-key 快捷键提示
-- 🔧 **开发工具**：LSP (Pyright/clangd/jsonls/marksman/buf)，智能补全，AI 辅助 (Codeium)
+- 🔧 **开发工具**：LSP (Pyright/clangd/jsonls/marksman/buf)，智能补全，AI 辅助 (Codeium/windsurf.nvim)
 - 📂 **导航**：neo-tree 文件树，Telescope 模糊搜索，Flash 快速跳转，项目管理
 - 🐍 **Python 支持**：venv-selector.nvim 虚拟环境管理（支持 .venv/Poetry/Conda），与 Pyright LSP 深度集成
 - 🌿 **Git 集成**：gitsigns 状态显示，diffview 可视化 diff 工具
@@ -16,13 +16,13 @@
 - 📐 **代码折叠**：基于 Tree-sitter 的智能折叠
 - 🎯 **快速跳转**：flash.nvim 增强 f/t 跳转，支持可视化标签
 
-详细插件列表请查看：**[PLUGINS.md](PLUGINS.md)**
+详细插件列表请查看：**[docs/PLUGINS.md](docs/PLUGINS.md)**
 
 ## 环境要求
 
 ### 基础环境
 
-- **Neovim** ≥ 0.9（必须）
+- **Neovim** ≥ 0.11（必须）
 
 ### 需要手动安装的工具
 
@@ -85,7 +85,7 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 
 | 快捷键 | 功能 |
 |--------|------|
-| `<leader>h` | 打开启动面板 |
+| `<leader>o` | 打开启动面板 |
 | `<leader>e` | 打开/聚焦文件树 |
 | `<leader>ff` | 查找文件 |
 | `<leader>fg` | 全局搜索 |
@@ -96,7 +96,7 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 | `<leader>vs` | 选择 Python 虚拟环境 |
 | `s` | Flash 快速跳转 |
 
-完整的快捷键速查表请查看：**[KEYMAPS.md](KEYMAPS.md)**
+完整的快捷键速查表请查看：**[docs/KEYMAPS.md](docs/KEYMAPS.md)**
 
 ## 常见问题 / 排错
 
@@ -112,4 +112,3 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 
 本项目基于 [MIT 许可证](LICENSE) 开源。
 感谢所有开源插件作者的贡献。
-
