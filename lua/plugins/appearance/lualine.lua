@@ -2,10 +2,12 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
+		local utils = require("core.utils")
+
 		-- Python 虚拟环境显示（使用 venv-selector.nvim API）
 		local function python_env()
-			local ok, venv_selector = pcall(require, "venv-selector")
-			if not ok then
+			local venv_selector = utils.safe_require("venv-selector")
+			if not venv_selector then
 				return ""
 			end
 

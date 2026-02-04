@@ -18,11 +18,10 @@ return {
         --------------------------------------------------------------------------
         -- 公共 capabilities
         --------------------------------------------------------------------------
-        local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
-        local capabilities = ok_cmp and cmp_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
-
         local utils = require("core.utils")
         local is_normal_file_buffer = utils.is_normal_file_buffer
+        local cmp_lsp = utils.safe_require("cmp_nvim_lsp")
+        local capabilities = cmp_lsp and cmp_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
 
         local on_attach = function(client, bufnr)
             local lsp_keys = utils.safe_require("core.keymaps.lsp")
@@ -76,15 +75,12 @@ return {
 
             -- 只在正常文件中启动,避免在 diffview 等虚拟 buffer 中启动
             root_dir = function(bufnr, on_dir)
-                -- 获取 buffer 的文件名
-                local fname = vim.api.nvim_buf_get_name(bufnr)
-
                 if not is_normal_file_buffer(bufnr) then
                     return -- 不调用 on_dir，跳过 LSP 启动
                 end
 
                 -- 正常文件：查找项目根目录并调用 on_dir 启动 LSP
-                local root = vim.fs.root(bufnr, {
+                local root = utils.find_project_root(bufnr, {
                     "compile_commands.json",
                     "compile_flags.txt",
                     ".git",
@@ -127,15 +123,12 @@ return {
             -- 只在正常文件中启动，避免在 diffview 等虚拟 buffer 中启动
             -- Neovim 0.11 新 API: root_dir(bufnr, on_dir)
             root_dir = function(bufnr, on_dir)
-                -- 获取 buffer 的文件名
-                local fname = vim.api.nvim_buf_get_name(bufnr)
-
                 if not is_normal_file_buffer(bufnr) then
                     return -- 不调用 on_dir，跳过 LSP 启动
                 end
 
                 -- 正常文件：查找项目根目录并调用 on_dir 启动 LSP
-                local root = vim.fs.root(bufnr, { ".git", ".marksman.toml" })
+                local root = utils.find_project_root(bufnr, { ".git", ".marksman.toml" })
                 if root then
                     on_dir(root)
                 end
@@ -154,11 +147,16 @@ return {
             on_attach = on_attach,
             filetypes = { "proto" },
 
-            root_dir = vim.fs.root(0, {
-                "buf.yaml",
-                "buf.work.yaml",
-                ".git",
-            }),
+            root_dir = function(bufnr, on_dir)
+                local root = utils.find_project_root(bufnr, {
+                    "buf.yaml",
+                    "buf.work.yaml",
+                    ".git",
+                })
+                if root then
+                    on_dir(root)
+                end
+            end,
         }
 
         -- 启用 buf_ls

@@ -44,7 +44,7 @@ function M.get_preferred_shell()
 	end
 end
 
-function M.is_normal_file_buffer(bufnr)
+function M.is_normal_file_buffer(bufnr, opts)
 	-- 跳过使用特殊 URI scheme 的 buffer (diffview://, fugitive:// 等)
 	local fname = vim.api.nvim_buf_get_name(bufnr)
 	if fname:match("^%w+://") then
@@ -52,9 +52,24 @@ function M.is_normal_file_buffer(bufnr)
 	end
 
 	-- 跳过特殊 buffer (terminal, help, quickfix 等)
-	local ok, buftype = pcall(vim.api.nvim_buf_get_option, bufnr, "buftype")
-	if ok and buftype ~= "" then
+	local buftype = opts and opts.buftype or vim.bo[bufnr].buftype
+	if buftype ~= "" then
 		return false
+	end
+
+	if opts and opts.filetype ~= nil then
+		local filetype = opts.filetype
+		if opts.exclude_filetypes then
+			for _, excluded in ipairs(opts.exclude_filetypes) do
+				if filetype == excluded then
+					return false
+				end
+			end
+		end
+
+		if opts.allow_empty_filetype == false and filetype == "" then
+			return false
+		end
 	end
 
 	return true

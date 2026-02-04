@@ -49,8 +49,8 @@ return {
         term_manager.setup_autocmds()
 
         -- 设置键位绑定
-        local ok_keys, keys_mod = pcall(require, "core.keymaps.toggleterm")
-        if ok_keys and keys_mod and type(keys_mod.setup) == "function" then
+        local keys_mod = utils.safe_require("core.keymaps.toggleterm")
+        if keys_mod and type(keys_mod.setup) == "function" then
             keys_mod.setup(term_manager, resolve_desired_cwd)
         end
     end,

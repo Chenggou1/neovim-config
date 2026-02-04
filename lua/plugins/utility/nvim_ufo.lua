@@ -14,9 +14,15 @@ return {
 		require("ufo").setup({
 			provider_selector = function(bufnr, filetype, buftype)
 				local is_normal_file_buffer = require("core.utils").is_normal_file_buffer
+				local ok = is_normal_file_buffer(bufnr, {
+					filetype = filetype,
+					buftype = buftype,
+					exclude_filetypes = { "neo-tree" },
+					allow_empty_filetype = false,
+				})
 
 				-- 在 neo-tree 等特殊 buffer 中禁用折叠
-				if not is_normal_file_buffer(bufnr) or filetype == "neo-tree" or filetype == "" or buftype ~= "" then
+				if not ok then
 					return ""
 				end
 				return { "treesitter", "indent" }
