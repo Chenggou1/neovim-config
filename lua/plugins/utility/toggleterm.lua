@@ -2,8 +2,8 @@ local utils = require("core.utils")
 
 -- 解析合适的工作目录（优先 neo-tree 当前根目录）
 local function resolve_desired_cwd()
-  local ok_manager, manager = pcall(require, "neo-tree.sources.manager")
-  if ok_manager and manager and type(manager.get_state) == "function" then
+  local manager = utils.safe_require("neo-tree.sources.manager")
+  if manager and type(manager.get_state) == "function" then
     local state = manager.get_state("filesystem")
     if state then
       local path = state.path or state.cwd
@@ -18,15 +18,7 @@ local function resolve_desired_cwd()
 
   local file = vim.api.nvim_buf_get_name(0)
   if file ~= "" then
-    local root = vim.fs.root(file, {
-      ".git",
-      ".hg",
-      "pyproject.toml",
-      "package.json",
-      "go.mod",
-      "Cargo.toml",
-      "Makefile",
-    })
+    local root = utils.find_project_root(file)
     if root and root ~= "" then
       return root
     end
@@ -61,18 +53,5 @@ return {
         if ok_keys and keys_mod and type(keys_mod.setup) == "function" then
             keys_mod.setup(term_manager, resolve_desired_cwd)
         end
-
-        -- 主键位（使用终端管理器）
-        vim.keymap.set("n", "<leader>t1", function()
-            term_manager.toggle_terminal("term1", resolve_desired_cwd)
-        end, { desc = "切换终端 1" })
-
-        vim.keymap.set("n", "<leader>t2", function()
-            term_manager.toggle_terminal("term2", resolve_desired_cwd)
-        end, { desc = "切换终端 2" })
-
-        vim.keymap.set("n", "<leader>tf", function()
-            term_manager.toggle_terminal("float_term", resolve_desired_cwd)
-        end, { desc = "浮动终端" })
     end,
 }

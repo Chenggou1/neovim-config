@@ -13,8 +13,10 @@ return {
 		-- 配置 nvim-ufo，排除 neo-tree 等特殊 buffer
 		require("ufo").setup({
 			provider_selector = function(bufnr, filetype, buftype)
+				local is_normal_file_buffer = require("core.utils").is_normal_file_buffer
+
 				-- 在 neo-tree 等特殊 buffer 中禁用折叠
-				if filetype == "neo-tree" or filetype == "" or buftype ~= "" then
+				if not is_normal_file_buffer(bufnr) or filetype == "neo-tree" or filetype == "" or buftype ~= "" then
 					return ""
 				end
 				return { "treesitter", "indent" }

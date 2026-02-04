@@ -5,9 +5,6 @@ return {
 		"hrsh7th/nvim-cmp",
 	},
 	config = function()
-		-- 确保编码正确设置（防止 Codeium 处理中文时出错）
-		vim.opt.encoding = "utf-8"
-
 		require("codeium").setup({
 			enable_cmp_source = true, -- 启用 cmp 补全源（在补全菜单中显示）
 			virtual_text = {

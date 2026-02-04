@@ -44,4 +44,43 @@ function M.get_preferred_shell()
 	end
 end
 
+function M.is_normal_file_buffer(bufnr)
+	-- 跳过使用特殊 URI scheme 的 buffer (diffview://, fugitive:// 等)
+	local fname = vim.api.nvim_buf_get_name(bufnr)
+	if fname:match("^%w+://") then
+		return false
+	end
+
+	-- 跳过特殊 buffer (terminal, help, quickfix 等)
+	local ok, buftype = pcall(vim.api.nvim_buf_get_option, bufnr, "buftype")
+	if ok and buftype ~= "" then
+		return false
+	end
+
+	return true
+end
+
+function M.safe_require(module_name)
+	local ok, mod = pcall(require, module_name)
+	if ok then
+		return mod
+	end
+	return nil
+end
+
+function M.find_project_root(path, markers)
+	local candidates = markers
+		or {
+			".git",
+			".hg",
+			"pyproject.toml",
+			"package.json",
+			"go.mod",
+			"Cargo.toml",
+			"Makefile",
+		}
+
+	return vim.fs.root(path, candidates)
+end
+
 return M

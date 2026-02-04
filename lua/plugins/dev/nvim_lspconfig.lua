@@ -21,9 +21,12 @@ return {
         local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
         local capabilities = ok_cmp and cmp_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
 
+        local utils = require("core.utils")
+        local is_normal_file_buffer = utils.is_normal_file_buffer
+
         local on_attach = function(client, bufnr)
-            local ok, lsp_keys = pcall(require, "core.keymaps.lsp")
-            if ok and type(lsp_keys.on_attach) == "function" then
+            local lsp_keys = utils.safe_require("core.keymaps.lsp")
+            if lsp_keys and type(lsp_keys.on_attach) == "function" then
                 lsp_keys.on_attach(client, bufnr)
             end
         end
@@ -76,14 +79,7 @@ return {
                 -- 获取 buffer 的文件名
                 local fname = vim.api.nvim_buf_get_name(bufnr)
 
-                -- 检查 1: 跳过使用特殊 URI scheme 的 buffer (diffview://, fugitive:// 等)
-                if fname:match("^%w+://") then
-                    return -- 不调用 on_dir，跳过 LSP 启动
-                end
-
-                -- 检查 2: 跳过特殊 buffer (terminal, help, quickfix 等)
-                local ok, buftype = pcall(vim.api.nvim_buf_get_option, bufnr, "buftype")
-                if ok and buftype ~= "" then
+                if not is_normal_file_buffer(bufnr) then
                     return -- 不调用 on_dir，跳过 LSP 启动
                 end
 
@@ -134,14 +130,7 @@ return {
                 -- 获取 buffer 的文件名
                 local fname = vim.api.nvim_buf_get_name(bufnr)
 
-                -- 检查 1: 跳过使用特殊 URI scheme 的 buffer (diffview://, fugitive:// 等)
-                if fname:match("^%w+://") then
-                    return -- 不调用 on_dir，跳过 LSP 启动
-                end
-
-                -- 检查 2: 跳过特殊 buffer (terminal, help, quickfix 等)
-                local ok, buftype = pcall(vim.api.nvim_buf_get_option, bufnr, "buftype")
-                if ok and buftype ~= "" then
+                if not is_normal_file_buffer(bufnr) then
                     return -- 不调用 on_dir，跳过 LSP 启动
                 end
 
