@@ -96,26 +96,45 @@ else
 fi
 
 echo_info "安装 neovim npm 包 (Mason 依赖)..."
-sudo npm install -g neovim
+npm install -g neovim
 
 # ============================================================================
 # 5. 安装 Neovim (最新版本)
 # ============================================================================
-echo_info "安装 Neovim ${NVIM_VERSION}..."
+# 版本比较函数：返回 0 表示 $1 >= $2
+version_gte() {
+    printf '%s\n%s' "$1" "$2" | sort -V -C
+}
 
-# 下载 Neovim
-NVIM_URL="https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-${NVIM_ARCH}.tar.gz"
-echo_info "下载: $NVIM_URL"
-curl -fsSL "$NVIM_URL" -o /tmp/nvim.tar.gz
+echo_info "检查 Neovim..."
+if command -v nvim &> /dev/null; then
+    CURRENT_NVIM_VERSION=$(nvim --version | head -n1 | grep -oP 'v[0-9]+\.[0-9]+\.[0-9]+')
+    if version_gte "$CURRENT_NVIM_VERSION" "$NVIM_VERSION"; then
+        echo_info "Neovim 已安装且版本满足要求: $CURRENT_NVIM_VERSION (最低要求: $NVIM_VERSION)"
+    else
+        echo_info "Neovim 版本过低 (当前: $CURRENT_NVIM_VERSION, 最低要求: $NVIM_VERSION)，升级中..."
+        INSTALL_NVIM=true
+    fi
+else
+    echo_info "Neovim 未安装，开始安装 ${NVIM_VERSION}..."
+    INSTALL_NVIM=true
+fi
 
-# 解压并安装
-tar -xzf /tmp/nvim.tar.gz -C /tmp
-sudo rm -rf /opt/nvim
-sudo mv "/tmp/nvim-linux-${NVIM_ARCH}" /opt/nvim
-sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
-rm /tmp/nvim.tar.gz
+if [ "$INSTALL_NVIM" = "true" ]; then
+    # 下载 Neovim
+    NVIM_URL="https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-${NVIM_ARCH}.tar.gz"
+    echo_info "下载: $NVIM_URL"
+    curl -fsSL "$NVIM_URL" -o /tmp/nvim.tar.gz
 
-echo_info "Neovim 安装完成: $(nvim --version | head -n1)"
+    # 解压并安装
+    tar -xzf /tmp/nvim.tar.gz -C /tmp
+    sudo rm -rf /opt/nvim
+    sudo mv "/tmp/nvim-linux-${NVIM_ARCH}" /opt/nvim
+    sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
+    rm /tmp/nvim.tar.gz
+
+    echo_info "Neovim 安装完成: $(nvim --version | head -n1)"
+fi
 
 # ============================================================================
 # 6. 检查 Neovim 配置目录
@@ -132,24 +151,9 @@ else
     SKIP_PLUGINS=false
 fi
 
-# ============================================================================
-# 7. 安装/同步 Neovim 插件
-# ============================================================================
-if [ "$SKIP_PLUGINS" = "false" ]; then
-    echo_info "同步 Neovim 插件 (Lazy.nvim)..."
-    echo_info "第一次同步..."
-    nvim --headless "+Lazy! sync" +qa || true
-
-    echo_info "第二次同步 (确保所有插件加载)..."
-    nvim --headless "+Lazy! sync" +qa || true
-
-    echo_info "LSP 服务器和格式化工具将在首次启动时自动安装 (mason-tool-installer)"
-else
-    echo_warn "跳过插件安装（配置目录未找到）"
-fi
 
 # ============================================================================
-# 8. 启动 Neovim Server (可选)
+# 7. 启动 Neovim Server (可选)
 # ============================================================================
 if [ "$START_SERVER" = "yes" ] || [ "$START_SERVER" = "server" ]; then
     echo_info "启动 Neovim Server (监听 0.0.0.0:${NVIM_LISTEN_PORT})..."
