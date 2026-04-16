@@ -102,6 +102,10 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 
 - **tree-sitter 编译失败**：确认已安装 GCC/Clang 等 C 编译器。
 - **系统剪贴板未同步**：默认不与系统剪贴板共享，可使用 `<leader>y` 复制、`<leader>p` 粘贴。
+- **Rust LSP 不工作**：需手动安装 rust-analyzer，Mason 不负责管理。安装方式：
+  ```bash
+  rustup component add rust-analyzer
+  ```
 
 ## 升级与维护
 

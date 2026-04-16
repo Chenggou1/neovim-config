@@ -12,4 +12,5 @@ return {
 	require("plugins.dev.cmake_tools"),
 	require("plugins.dev.tiny_inline_diagnostic"),
 	require("plugins.dev.comment"),
+	require("plugins.dev.rustaceanvim"),
 }

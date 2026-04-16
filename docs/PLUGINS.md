@@ -131,6 +131,11 @@
 **仓库**: `JoosepAlviste/nvim-ts-context-commentstring`
 **作用**: Treesitter 注释字符串上下文支持，为 Comment.nvim 提供 JSX/TSX 等复杂语法的注释支持
 
+### rustaceanvim
+**仓库**: `mrcjkb/rustaceanvim`
+**作用**: Rust 开发套件，自动配置 rust-analyzer LSP，提供补全、跳转、内联提示、Cargo 命令集成等功能
+**注意**: 需手动安装 rust-analyzer：`rustup component add rust-analyzer`
+
 ### windsurf.nvim (Codeium)
 **仓库**: `Exafunction/windsurf.nvim`
 **作用**: Codeium AI 代码补全，支持虚拟文本（灰色幽灵文字）和补全菜单集成
@@ -236,9 +241,9 @@
 
 ## 统计
 
-**总计**: 46 个插件
+**总计**: 47 个插件
 - 外观: 9 个
-- 开发工具: 21 个
+- 开发工具: 22 个
 - 导航: 7 个
 - 实用工具: 6 个
 - Git 集成: 3 个

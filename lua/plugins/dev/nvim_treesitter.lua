@@ -60,6 +60,7 @@ return {
 				"cpp",
 				"toml",
 				"yaml",
+				"rust",
 			},
 			-- 异步安装(推荐)
 			sync_install = false,
