@@ -209,6 +209,7 @@
 | `<leader>ff` | 查找文件                 |
 | `<leader>fg` | 全局搜索（需要 ripgrep） |
 | `<leader>fc` | 当前文件内搜索           |
+| `<leader>ft` | 查找 TODO 注释           |
 
 ### Aerial（代码大纲）
 

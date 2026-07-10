@@ -23,6 +23,7 @@ opt.autoindent = true -- 新行默认继承上一行的缩进
 
 -- 其他体验设置
 opt.cursorline = true -- 高亮当前行，提升可读性
+opt.scrolloff = 999 -- 尽量让光标所在行保持在视口中间
 
 -- 键位映射超时时间
 opt.timeoutlen = 300 -- 等待按键序列完成的时间

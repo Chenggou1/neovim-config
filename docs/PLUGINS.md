@@ -176,6 +176,11 @@
 **仓库**: `pocco81/auto-save.nvim`
 **作用**: 自动保存文件，在 InsertLeave 和文本修改后延迟保存
 
+### todo-comments.nvim
+**仓库**: `folke/todo-comments.nvim`
+**作用**: 高亮 TODO/FIX/HACK/WARN/NOTE 等注释，并支持通过 Telescope、quickfix 快速查找
+**依赖**: `nvim-lua/plenary.nvim`
+
 ### nvim-ufo
 **仓库**: `kevinhwang91/nvim-ufo`
 **作用**: 现代化代码折叠插件，使用 Treesitter 提供智能折叠，折叠时完整显示第一行内容（类似 VSCode），支持折叠预览和导航
@@ -229,11 +234,11 @@
 
 ## 统计
 
-**总计**: 44 个插件
+**总计**: 45 个插件
 - 外观: 8 个
 - 开发工具: 21 个
 - 导航: 7 个
-- 实用工具: 5 个
+- 实用工具: 6 个
 - Git 集成: 3 个
 - 依赖库: 4 个
 
