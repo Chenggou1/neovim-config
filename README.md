@@ -7,8 +7,8 @@
 ## 主要特性与插件
 
 - 🐬 **启动面板**：alpha-nvim 启动界面，海豚 ASCII 艺术，最近项目快速访问
-- 🎨 **外观**：One Dark Pro 主题，透明背景支持，which-key 快捷键提示
-- 🔧 **开发工具**：LSP (Pyright/clangd/jsonls/marksman/buf)，智能补全，AI 辅助 (Codeium/windsurf.nvim)
+- 🎨 **外观**：Rosé Pine Moon 主题，which-key 快捷键提示
+- 🔧 **开发工具**：LSP (Pyright/clangd/jsonls/marksman/buf)，智能补全
 - 📂 **导航**：neo-tree 文件树，Telescope 模糊搜索，Flash 快速跳转，项目管理
 - 🐍 **Python 支持**：venv-selector.nvim 虚拟环境管理（支持 .venv/Poetry/Conda），与 Pyright LSP 深度集成
 - 🌿 **Git 集成**：gitsigns 状态显示，diffview 可视化 diff 工具

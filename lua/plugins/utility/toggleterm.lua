@@ -36,7 +36,7 @@ return {
             size = 15,
             open_mapping = [[<C-\>]],
             hide_numbers = true,
-            shade_terminals = true,
+            shade_terminals = false,
             start_in_insert = true,
             persist_size = true,
             direction = "horizontal",

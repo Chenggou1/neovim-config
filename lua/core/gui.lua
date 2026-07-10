@@ -17,9 +17,6 @@ function M.setup()
 	local default_size = 14
 	vim.o.guifont = string.format("%s:h%d", default_font, default_size)
 
-	-- 透明度设置（0.14.0+ 版本推荐配置）
-	vim.g.neovide_opacity = 0.85 -- 窗口不透明度 0~1，可用 Alt+=/- 调整
-	-- neovide_background_color 已废弃，移除以避免与 opacity 冲突（macOS 特别重要）
 	vim.g.neovide_floating_blur_amount_x = 2.0
 	vim.g.neovide_floating_blur_amount_y = 2.0
 
@@ -46,26 +43,6 @@ function M.setup()
 
 	-- macOS 特定优化
 	vim.g.neovide_input_macos_option_key_is_meta = "only_left" -- 左 Option 键作为 Meta
-
-	-- 透明度调整函数
-	local function change_opacity(delta)
-		local current = vim.g.neovide_opacity or 0.7
-		local new_opacity = math.max(0.1, math.min(1.0, current + delta))
-		vim.g.neovide_opacity = new_opacity
-		vim.notify(string.format("透明度: %.0f%%", new_opacity * 100), vim.log.levels.INFO)
-	end
-
-	-- 透明度快捷键：Alt+= 增加 / Alt+- 减少 / Alt+0 重置
-	vim.keymap.set({ "n", "i" }, "<M-=>", function()
-		change_opacity(0.05)
-	end, { desc = "增加透明度(更不透明)" })
-	vim.keymap.set({ "n", "i" }, "<M-->", function()
-		change_opacity(-0.05)
-	end, { desc = "减少透明度(更透明)" })
-	vim.keymap.set({ "n", "i" }, "<M-0>", function()
-		vim.g.neovide_opacity = 0.85
-		vim.notify("透明度已重置: 85%", vim.log.levels.INFO)
-	end, { desc = "重置透明度" })
 
 	-- 字体缩放函数
 	local function change_font_size(delta)

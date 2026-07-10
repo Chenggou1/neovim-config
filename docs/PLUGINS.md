@@ -10,9 +10,9 @@
 **仓库**: `goolord/alpha-nvim`
 **作用**: 启动面板，显示海豚 ASCII 艺术、快捷操作菜单和名言
 
-### onedarkpro.nvim
-**仓库**: `olimorris/onedarkpro.nvim`
-**作用**: One Dark 配色方案，提供统一的主题颜色
+### rose-pine
+**仓库**: `rose-pine/neovim`
+**作用**: Rosé Pine 配色方案，提供统一的主题颜色
 
 ### lualine.nvim
 **仓库**: `nvim-lualine/lualine.nvim`
@@ -21,10 +21,6 @@
 ### mini.nvim
 **仓库**: `echasnovski/mini.nvim`
 **作用**: 提供图标支持（mini.icons）
-
-### transparent.nvim
-**仓库**: `xiyaowong/transparent.nvim`
-**作用**: 背景透明化支持，让终端背景透过 Neovim 窗口
 
 ### which-key.nvim
 **仓库**: `folke/which-key.nvim`
@@ -73,7 +69,7 @@
 
 ### nvim-cmp
 **仓库**: `hrsh7th/nvim-cmp`
-**作用**: 自动补全引擎，整合 LSP、snippet、buffer、path、AI 补全源
+**作用**: 自动补全引擎，整合 LSP、snippet、buffer、path 补全源
 
 ### cmp-nvim-lsp
 **仓库**: `hrsh7th/cmp-nvim-lsp`
@@ -136,10 +132,6 @@
 **作用**: Rust 开发套件，自动配置 rust-analyzer LSP，提供补全、跳转、内联提示、Cargo 命令集成等功能
 **注意**: 需手动安装 rust-analyzer：`rustup component add rust-analyzer`
 
-### windsurf.nvim (Codeium)
-**仓库**: `Exafunction/windsurf.nvim`
-**作用**: Codeium AI 代码补全，支持虚拟文本（灰色幽灵文字）和补全菜单集成
-
 ---
 
 ## 导航（Navigation）
@@ -183,10 +175,6 @@
 ### auto-save.nvim
 **仓库**: `pocco81/auto-save.nvim`
 **作用**: 自动保存文件，在 InsertLeave 和文本修改后延迟保存
-
-### markview.nvim
-**仓库**: `OXY2DEV/markview.nvim`
-**作用**: Markdown 实时预览和渲染，支持混合模式编辑
 
 ### nvim-ufo
 **仓库**: `kevinhwang91/nvim-ufo`
@@ -241,11 +229,11 @@
 
 ## 统计
 
-**总计**: 47 个插件
-- 外观: 9 个
-- 开发工具: 22 个
+**总计**: 44 个插件
+- 外观: 8 个
+- 开发工具: 21 个
 - 导航: 7 个
-- 实用工具: 6 个
+- 实用工具: 5 个
 - Git 集成: 3 个
 - 依赖库: 4 个
 

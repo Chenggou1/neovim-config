@@ -21,8 +21,14 @@ return {
 				mappings = {
 					i = {
 						["<ESC>"] = require("telescope.actions").close,
+						["<Down>"] = require("telescope.actions").move_selection_next,
+						["<Up>"] = require("telescope.actions").move_selection_previous,
 						["<C-j>"] = require("telescope.actions").move_selection_next,
 						["<C-k>"] = require("telescope.actions").move_selection_previous,
+					},
+					n = {
+						["<Down>"] = require("telescope.actions").move_selection_next,
+						["<Up>"] = require("telescope.actions").move_selection_previous,
 					},
 				},
 			},
