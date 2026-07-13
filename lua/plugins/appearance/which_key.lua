@@ -33,6 +33,10 @@ return {
 			{ "gcO", desc = "在上方插入注释" },
 			{ "gcA", desc = "在行尾添加注释" },
 
+			-- 隐藏简单剪贴板快捷键，保留映射本身
+			{ "<leader>y", hidden = true, mode = { "n", "v" } },
+			{ "<leader>p", hidden = true, mode = { "n", "v" } },
+
 			-- 隐藏数字快捷键（标签页跳转），避免在 which-key 中显示
 			{ "<leader>1", hidden = true },
 			{ "<leader>2", hidden = true },
