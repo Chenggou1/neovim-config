@@ -2,17 +2,17 @@ local M = {}
 
 function M.setup(term_manager, resolve_cwd_fn)
 	-- 主键位（使用终端管理器）
-	vim.keymap.set("n", "<leader>t1", function()
-		term_manager.toggle_terminal("term1", resolve_cwd_fn)
-	end, { desc = "切换终端 1" })
-
-	vim.keymap.set("n", "<leader>t2", function()
-		term_manager.toggle_terminal("term2", resolve_cwd_fn)
-	end, { desc = "切换终端 2" })
-
 	vim.keymap.set("n", "<leader>tf", function()
 		term_manager.toggle_terminal("float_term", resolve_cwd_fn)
 	end, { desc = "浮动终端" })
+
+	vim.keymap.set("n", "<leader>tn", function()
+		local cwd = resolve_cwd_fn and resolve_cwd_fn() or vim.loop.cwd()
+		local name = require("core.terminal_names").create(cwd)
+		vim.cmd("TermNew dir=" .. vim.fn.fnameescape(cwd) .. " name=" .. name)
+	end, { desc = "新建终端" })
+
+	vim.keymap.set("n", "<leader>tt", "<cmd>TermSelect<CR>", { desc = "选择终端" })
 
 	-- 彻底关闭（杀死）当前聚焦的 ToggleTerm 终端
 	local function kill_focused_toggleterm()

@@ -30,7 +30,7 @@ end
 
 return {
 	"akinsho/toggleterm.nvim",
-	version = "*",
+	version = false, -- Track main for :TermNew support before the next tagged release.
 	config = function()
         require("toggleterm").setup({
             size = 15,
