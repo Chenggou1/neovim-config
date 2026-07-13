@@ -7,7 +7,7 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = { "TodoQuickFix", "TodoLocList", "TodoTelescope" },
 	keys = {
-		{ "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "查找 TODO" },
+		{ "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "查找注释标签" },
 	},
 	opts = {
 		signs = true,

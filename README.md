@@ -89,7 +89,7 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 | `<leader>e` | 打开/聚焦文件树 |
 | `<leader>ff` | 查找文件 |
 | `<leader>fg` | 全局搜索 |
-| `<leader>ft` | 查找 TODO 注释 |
+| `<leader>ft` | 查找注释标签 |
 | `<leader>"` | 查看寄存器 |
 | `<leader>cf` | 格式化代码 |
 | `<leader>cn` | LSP 重命名 |

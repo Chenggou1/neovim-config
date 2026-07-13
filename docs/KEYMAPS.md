@@ -209,7 +209,7 @@
 | `<leader>ff` | 查找文件                 |
 | `<leader>fg` | 全局搜索（需要 ripgrep） |
 | `<leader>fc` | 当前文件内搜索           |
-| `<leader>ft` | 查找 TODO 注释           |
+| `<leader>ft` | 查找注释标签             |
 
 ### Aerial（代码大纲）
 
@@ -575,7 +575,7 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | `<leader>e` | 文件树（Explorer）                  |
 | `<leader>f` | 查找（Find/Search）                 |
 | `<leader>g` | Git 操作（Graph/Diff/History）      |
-| `<leader>o` | 帮助（Help）                        |
+| `<leader>o` | 启动面板（Dashboard）               |
 | `<leader>m` | CMake 构建                          |
 | `<leader>t` | 终端（Terminal）                    |
 | `<leader>v` | Python 虚拟环境（Venv）             |
