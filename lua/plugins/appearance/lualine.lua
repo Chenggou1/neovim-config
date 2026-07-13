@@ -3,6 +3,7 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local utils = require("core.utils")
+		local todo_status = require("core.todo_status")
 
 		-- Python 虚拟环境显示（使用 venv-selector.nvim API）
 		local function python_env()
@@ -19,6 +20,8 @@ return {
 			end
 			return ""
 		end
+		todo_status.setup()
+
 		require("lualine").setup({
 			options = {
 				theme = "auto",
@@ -28,7 +31,7 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff" },
+				lualine_b = { "branch", "diff", todo_status.lualine_component },
 				lualine_c = {
 					{
 						"filename",
@@ -36,8 +39,8 @@ return {
 					},
 				},
 				lualine_x = { python_env, "encoding", "filetype" },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_y = {},
+				lualine_z = {},
 			},
 		})
 	end,
