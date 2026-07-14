@@ -172,10 +172,6 @@
 **仓库**: `akinsho/toggleterm.nvim`
 **作用**: 终端管理器，支持多终端、浮动终端、自动激活 Python 虚拟环境
 
-### auto-save.nvim
-**仓库**: `pocco81/auto-save.nvim`
-**作用**: 自动保存文件，在 InsertLeave 和文本修改后延迟保存
-
 ### todo-comments.nvim
 **仓库**: `folke/todo-comments.nvim`
 **作用**: 高亮 TODO/FIX/HACK/WARN/NOTE 等注释，并支持通过 Telescope、quickfix 快速查找
