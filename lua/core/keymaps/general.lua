@@ -30,7 +30,7 @@ function M.setup()
 
 	-- 标签页管理（Leader b 系列，解决 macOS Neovide 远程连接容器时 Alt 键失效问题）
 	map("n", "<leader>bn", "<cmd>tabnew | Alpha<CR>", "新建标签页")
-	map("n", "<leader>bc", "<cmd>tabclose<CR>", "关闭当前标签页")
+	map("n", "<leader>bq", "<cmd>tabclose<CR>", "关闭当前标签页")
 	map("n", "<leader>b<Left>", "<cmd>tabprev<CR>", "上一个标签页")
 	map("n", "<leader>b<Right>", "<cmd>tabnext<CR>", "下一个标签页")
 

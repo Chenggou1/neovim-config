@@ -7,7 +7,13 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = { "TodoQuickFix", "TodoLocList", "TodoTelescope" },
 	keys = {
-		{ "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "查找注释标签" },
+		{
+			"<leader>ft",
+			function()
+				require("core.todo_picker").open()
+			end,
+			desc = "按标签查找注释",
+		},
 	},
 	opts = {
 		signs = true,

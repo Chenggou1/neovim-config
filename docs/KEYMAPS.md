@@ -55,7 +55,7 @@
 | 快捷键                     | 功能                         |
 | -------------------------- | ---------------------------- |
 | `<leader>bn`               | 新建标签页并打开启动面板     |
-| `<leader>bc`               | 关闭当前标签页               |
+| `<leader>bq`               | 关闭当前标签页               |
 | `<leader>b<Left>`          | 上一个标签页                 |
 | `<leader>b<Right>`         | 下一个标签页                 |
 | `<leader>1` ~ `<leader>9`  | 跳转到第 1~9 个标签页        |
@@ -209,7 +209,7 @@
 | `<leader>ff` | 查找文件                 |
 | `<leader>fg` | 全局搜索（需要 ripgrep） |
 | `<leader>fc` | 当前文件内搜索           |
-| `<leader>ft` | 查找注释标签             |
+| `<leader>ft` | 按标签查找注释           |
 
 ### Aerial（代码大纲）
 
@@ -430,7 +430,7 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 
 💡 **提示**：
 
-- 使用 `<leader>bc` 关闭 Git Graph/Diffview 标签页（见"标签页管理"章节）
+- 使用 `<leader>bq` 关闭 Git Graph/Diffview 标签页（见"标签页管理"章节）
 - 在 Git Graph 中按 `<Enter>` 选择提交会自动打开 diffview 查看详情
 
 **Visual 模式**：
