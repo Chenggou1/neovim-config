@@ -5,4 +5,5 @@ return {
 	require("plugins.utility.nvim_ufo"),
 	require("plugins.utility.autopairs"),
 	require("plugins.utility.nvim_numbertoggle"),
+	require("plugins.utility.sidekick"),
 }

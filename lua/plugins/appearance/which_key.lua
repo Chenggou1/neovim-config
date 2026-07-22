@@ -19,6 +19,7 @@ return {
 			{ "<leader>d", group = "Diff" },
 			{ "<leader>f", group = "查找" },
 			{ "<leader>g", group = "Git" },
+			{ "<leader>k", group = "Codex / AI" },
 			{ "<leader>m", group = "CMake" },
 			{ "<leader>r", group = "调整" },
 			{ "<leader>t", group = "终端" },
