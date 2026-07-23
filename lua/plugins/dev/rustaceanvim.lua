@@ -21,6 +21,6 @@ vim.g.rustaceanvim = {
 
 return {
     "mrcjkb/rustaceanvim",
-    version = "^5",
-    ft = "rust",
+    version = "^9",
+    lazy = false, -- rustaceanvim 自行管理按需加载
 }
