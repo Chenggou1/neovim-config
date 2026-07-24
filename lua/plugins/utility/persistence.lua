@@ -24,22 +24,39 @@ return {
 			return require("persistence").current() .. ".neo-tree"
 		end
 
+		local function sidekick_state_file()
+			return require("persistence").current() .. ".sidekick"
+		end
+
 		vim.api.nvim_create_autocmd("User", {
 			group = state_group,
 			pattern = "PersistenceSavePre",
 			callback = function()
 				local is_open = false
+				local sidekick_tool
 				for _, win in ipairs(vim.api.nvim_list_wins()) do
 					local buf = vim.api.nvim_win_get_buf(win)
 					if vim.bo[buf].filetype == "neo-tree" then
 						is_open = true
-						break
+					elseif vim.bo[buf].filetype == "sidekick_terminal" then
+						local session_id = vim.w[win].sidekick_session_id
+						local tool = type(session_id) == "string" and session_id:match("^(%S+)")
+						if tool == "codex" or tool == "codex_resume" then
+							sidekick_tool = "codex"
+						end
 					end
 				end
 
 				local state_file = neo_tree_state_file()
 				if is_open then
 					vim.fn.writefile({ "open" }, state_file)
+				elseif vim.fn.filereadable(state_file) == 1 then
+					vim.fn.delete(state_file)
+				end
+
+				state_file = sidekick_state_file()
+				if sidekick_tool then
+					vim.fn.writefile({ sidekick_tool }, state_file)
 				elseif vim.fn.filereadable(state_file) == 1 then
 					vim.fn.delete(state_file)
 				end
@@ -57,6 +74,22 @@ return {
 				-- 让 session 先恢复并聚焦原文件，再打开文件树。
 				vim.schedule(function()
 					vim.cmd("Neotree show")
+				end)
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("User", {
+			group = state_group,
+			pattern = "PersistenceLoadPost",
+			callback = function()
+				local state_file = sidekick_state_file()
+				if vim.fn.filereadable(state_file) == 0 or vim.fn.readfile(state_file)[1] ~= "codex" then
+					return
+				end
+
+				-- Codex 对话已由 CLI 持久化；这里只重建终端并恢复当前目录最近的会话。
+				vim.schedule(function()
+					vim.cmd("Sidekick cli show name=codex_resume focus=false")
 				end)
 			end,
 		})
