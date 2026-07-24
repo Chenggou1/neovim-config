@@ -8,4 +8,5 @@ return {
 	require("plugins.utility.neov_ime"),
 	require("plugins.utility.sidekick"),
 	require("plugins.utility.persistence"),
+	require("plugins.utility.yanky"),
 }

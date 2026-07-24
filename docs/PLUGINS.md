@@ -190,6 +190,18 @@
 **仓库**: `sitiom/nvim-numbertoggle`
 **作用**: 自动切换行号显示模式，Normal 模式显示相对行号（便于跳转），Insert 模式显示绝对行号（便于定位）
 
+### yanky.nvim
+**仓库**: `gbprod/yanky.nvim`
+**作用**: 管理最近 30 条复制历史，支持搜索历史、粘贴后用 Ctrl-p/Ctrl-n 切换内容；与系统剪贴板独立
+
+### persistence.nvim
+**仓库**: `folke/persistence.nvim`
+**作用**: 按工作目录保存并自动恢复文件、光标位置、标签页和窗口布局；额外恢复 Neo-tree 与 Sidekick Codex 窗口状态
+
+### sidekick.nvim
+**仓库**: `folke/sidekick.nvim`
+**作用**: 在 Neovim 中使用 Codex 等 Coding Agent，支持发送当前文件、选区和自定义提示；恢复工作区时重建最近的 Codex 会话
+
 ---
 
 ## Git 集成（Git）
@@ -228,14 +240,6 @@
 
 ---
 
-## 统计
+## 说明
 
-**总计**: 45 个插件
-- 外观: 8 个
-- 开发工具: 21 个
-- 导航: 7 个
-- 实用工具: 6 个
-- Git 集成: 3 个
-- 依赖库: 4 个
-
-注：部分插件作为依赖被其他插件引入（如 nvim-notify 是 noice.nvim 的依赖），已计入统计
+插件数量会随依赖和锁文件更新而变化，请以 `:Lazy` 中显示的实际安装列表为准。

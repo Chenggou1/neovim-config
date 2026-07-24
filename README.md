@@ -15,6 +15,8 @@
 - 🖥️ **终端管理**：toggleterm 多终端支持，自动激活 Python venv
 - 📐 **代码折叠**：基于 Tree-sitter 的智能折叠
 - 🎯 **快速跳转**：flash.nvim 增强 f/t 跳转，支持可视化标签
+- 💾 **工作区恢复**：重新打开目录时自动恢复文件、阅读位置、布局、Neo-tree 和 Codex 窗口
+- 📋 **复制历史**：Yanky 保存最近 30 条复制内容，可搜索并切换历史粘贴
 
 详细插件列表请查看：**[docs/PLUGINS.md](docs/PLUGINS.md)**
 
@@ -90,7 +92,9 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 | `<leader>ff` | 查找文件 |
 | `<leader>fg` | 全局搜索 |
 | `<leader>ft` | 按标签查找注释 |
-| `<leader>"` | 查看寄存器 |
+| `<leader>"` | 查看复制历史 |
+| `<A-j>` / `<A-k>` | 向下/向上移动当前行或选区 |
+| `<leader>ks` | 选择并打开 Coding Agent |
 | `<leader>cf` | 格式化代码 |
 | `<leader>cn` | LSP 重命名 |
 | `<leader>ca` | 代码操作 |
@@ -103,6 +107,8 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 
 - **tree-sitter 编译失败**：确认已安装 GCC/Clang 等 C 编译器。
 - **系统剪贴板未同步**：默认不与系统剪贴板共享，可使用 `<leader>y` 复制、`<leader>p` 粘贴。
+- **如何安全关闭 Neovide**：推荐使用 `:wqa` 保存全部文件并退出，或确认无需保存后使用 `:qa!`。正常退出时会自动保存当前目录的会话。
+- **为什么指定文件时没有恢复工作区**：只有直接打开目录且未指定文件时才自动恢复，显式文件参数会被优先保留。
 - **Rust LSP 不工作**：需手动安装 rust-analyzer，Mason 不负责管理。安装方式：
   ```bash
   rustup component add rust-analyzer
