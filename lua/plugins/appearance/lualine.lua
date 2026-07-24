@@ -20,9 +20,16 @@ return {
 			end
 			return ""
 		end
+
+		local function macro_recording()
+			local register = vim.fn.reg_recording()
+			return register ~= "" and "● REC @" .. register or ""
+		end
+
 		todo_status.setup()
 
-		require("lualine").setup({
+		local lualine = require("lualine")
+		lualine.setup({
 			options = {
 				theme = "auto",
 				section_separators = { left = "", right = "" },
@@ -39,9 +46,18 @@ return {
 					},
 				},
 				lualine_x = { python_env, "encoding", "filetype" },
-				lualine_y = {},
+				lualine_y = { macro_recording },
 				lualine_z = {},
 			},
+		})
+
+		vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
+			group = vim.api.nvim_create_augroup("LualineMacroRecording", { clear = true }),
+			callback = function()
+				vim.schedule(function()
+					lualine.refresh({ force = true })
+				end)
+			end,
 		})
 	end,
 }
