@@ -202,6 +202,10 @@
 **仓库**: `folke/sidekick.nvim`
 **作用**: 在 Neovim 中使用 Codex 等 Coding Agent，支持发送当前文件、选区和自定义提示；恢复工作区时重建最近的 Codex 会话
 
+### urlview.nvim
+**仓库**: `axieax/urlview.nvim`
+**作用**: 识别并列出当前文件中的 URL，通过 Telescope 搜索，选中后复制到系统剪贴板
+
 ---
 
 ## Git 集成（Git）

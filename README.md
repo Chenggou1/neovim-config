@@ -92,6 +92,8 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 | `<leader>ff` | 查找文件 |
 | `<leader>fg` | 全局搜索 |
 | `<leader>ft` | 按标签查找注释 |
+| `<leader>fl` | 查找并复制当前文件中的链接 |
+| `<leader>yl` | 复制光标下的链接 |
 | `<leader>"` | 查看复制历史 |
 | `<A-j>` / `<A-k>` | 向下/向上移动当前行或选区 |
 | `<leader>ks` | 选择并打开 Coding Agent |

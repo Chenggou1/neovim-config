@@ -9,4 +9,5 @@ return {
 	require("plugins.utility.sidekick"),
 	require("plugins.utility.persistence"),
 	require("plugins.utility.yanky"),
+	require("plugins.utility.urlview"),
 }

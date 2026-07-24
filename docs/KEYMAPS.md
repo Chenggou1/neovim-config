@@ -36,6 +36,7 @@
 | `<C-n>`      | Normal        | 切换到下一条复制历史       |
 | `<leader>"`  | Normal        | 搜索最近 30 条复制历史      |
 | `<leader>y`  | Normal/Visual | 复制到 macOS/系统剪贴板     |
+| `<leader>yl` | Normal        | 复制光标所在位置的链接      |
 | `<leader>p`  | Normal/Visual | 从 macOS/系统剪贴板粘贴     |
 
 💡 **提示**：
@@ -230,6 +231,16 @@
 | `<leader>fg` | 全局搜索（需要 ripgrep） |
 | `<leader>fc` | 当前文件内搜索           |
 | `<leader>ft` | 按标签查找注释           |
+| `<leader>fl` | 查找当前文件中的链接；回车复制到系统剪贴板 |
+
+**链接导航（UrlView）**：
+
+| 快捷键 | 功能 |
+|--------|------|
+| `[u` | 跳转到上一个链接 |
+| `]u` | 跳转到下一个链接 |
+
+💡 **提示**：UrlView 识别带 `http://`、`https://` 或 `www` 前缀的链接，不要求链接两侧有空格。
 
 ### Aerial（代码大纲）
 
@@ -595,7 +606,7 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | `<leader>kf` | Normal        | 发送当前文件            |
 | `<leader>kv` | Visual        | 发送当前选区            |
 | `<leader>kp` | Normal/Visual | 输入提示并发送上下文    |
-| `<leader>kw` | Normal        | 解释光标下的单词        |
+| `<leader>kw` | Normal        | 解释光标下的单词（附文件位置） |
 
 💡 **提示**：`codex_resume` 是工作区恢复专用入口，用于重新打开最近一次 Codex 会话，不会让 Agent 在后台常驻。
 
