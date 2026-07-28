@@ -26,19 +26,6 @@ local function get_tabpage_terminals()
     return tabpage_terminals[tabpage_id], tabpage_id
 end
 
--- 创建终端打开回调（venv 自动激活由 venv-selector.nvim 插件处理）
-local function create_on_open_callback()
-    return function(t)
-        vim.keymap.set("n", "q", function()
-            t:toggle()
-        end, {
-            buffer = t.bufnr,
-            silent = true,
-            desc = "隐藏终端",
-        })
-    end
-end
-
 -- 获取或创建指定类型的终端
 function M.get_or_create_terminal(term_type, cwd)
     local term_config = TERM_TYPES[term_type]
@@ -63,7 +50,6 @@ function M.get_or_create_terminal(term_type, cwd)
         id = term_id,
         direction = term_config.direction,
         display_name = terminal_names.create(cwd, term_config.name_suffix),
-        on_open = create_on_open_callback(),
     })
 
     terminals[term_type] = term

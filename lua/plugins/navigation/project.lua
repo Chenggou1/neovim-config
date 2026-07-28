@@ -3,6 +3,8 @@ return {
 	event = "VeryLazy",
 	config = function()
 		require("project_nvim").setup({
+			-- 保持 Neovim 的启动目录，需要时使用 :ProjectRoot 手动切换到项目根目录
+			manual_mode = true,
 			-- 检测项目根目录的模式
 			detection_methods = { "pattern", "lsp" },
 			-- 用于检测项目的文件/目录

@@ -5,7 +5,7 @@ return {
 	keys = {
 		{ "<leader>fl", "<cmd>UrlView buffer<CR>", desc = "查找并复制链接" },
 		{
-			"<leader>yl",
+			"<leader>cl",
 			function()
 				local line = vim.api.nvim_get_current_line()
 				local col = vim.api.nvim_win_get_cursor(0)[2]

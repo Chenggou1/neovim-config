@@ -36,7 +36,7 @@
 | `<C-n>`      | Normal        | 切换到下一条复制历史       |
 | `<leader>"`  | Normal        | 搜索最近 30 条复制历史      |
 | `<leader>y`  | Normal/Visual | 复制到 macOS/系统剪贴板     |
-| `<leader>yl` | Normal        | 复制光标所在位置的链接      |
+| `<leader>cl` | Normal        | 复制光标所在位置的链接      |
 | `<leader>p`  | Normal/Visual | 从 macOS/系统剪贴板粘贴     |
 
 💡 **提示**：
@@ -65,9 +65,7 @@
 
 - 直接在一个目录中启动 Neovim/Neovide 且没有指定文件时，会自动恢复该目录上次的文件、光标阅读位置、标签页和窗口布局
 - Neo-tree 上次处于打开状态时会重新打开
-- Sidekick 的 Codex 窗口上次处于打开状态时，会重建终端并执行 `codex resume --last`
 - 显式指定文件启动时不会恢复旧会话，以指定文件为准
-- Codex 进程不会常驻；恢复的是 CLI 已保存的会话
 
 ---
 
@@ -325,7 +323,7 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | `gD`         | 跳转到声明              |
 | `gr`         | 查找引用                |
 | `gi`         | 跳转到实现              |
-| `K`          | 显示悬浮文档            |
+| `K`          | 显示悬浮文档 / 聚焦已有浮窗 |
 | `<leader>cn` | 重命名符号              |
 | `<leader>ca` | 代码操作（Code Action） |
 
@@ -607,8 +605,6 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | `<leader>kv` | Visual        | 发送当前选区            |
 | `<leader>kp` | Normal/Visual | 输入提示并发送上下文    |
 | `<leader>kw` | Normal        | 解释光标下的单词（附文件位置） |
-
-💡 **提示**：`codex_resume` 是工作区恢复专用入口，用于重新打开最近一次 Codex 会话，不会让 Agent 在后台常驻。
 
 ## 字体缩放（仅 Neovide）
 

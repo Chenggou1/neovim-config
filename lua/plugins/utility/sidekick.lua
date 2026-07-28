@@ -42,13 +42,6 @@ return {
 	},
 	opts = {
 		cli = {
-			tools = {
-				-- persistence 恢复窗口时使用，不在后台保留 Codex 进程。
-				codex_resume = {
-					cmd = { "codex", "resume", "--last" },
-					is_proc = "\\<codex\\>",
-				},
-			},
 			context = {
 				word = function(ctx)
 					return vim.api.nvim_win_call(ctx.win, function()

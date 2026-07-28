@@ -1,5 +1,15 @@
 local utils = require("core.utils")
 
+local function set_terminal_keymaps(term)
+  vim.keymap.set("n", "q", function()
+    term:toggle()
+  end, {
+    buffer = term.bufnr,
+    silent = true,
+    desc = "隐藏终端",
+  })
+end
+
 -- 解析合适的工作目录（优先 neo-tree 当前根目录）
 local function resolve_desired_cwd()
   local manager = utils.safe_require("neo-tree.sources.manager")
@@ -42,6 +52,7 @@ return {
             direction = "horizontal",
             close_on_exit = true,
             shell = utils.get_preferred_shell(),
+            on_open = set_terminal_keymaps,
         })
 
         -- 初始化终端管理器
