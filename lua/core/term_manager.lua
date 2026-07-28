@@ -29,7 +29,13 @@ end
 -- 创建终端打开回调（venv 自动激活由 venv-selector.nvim 插件处理）
 local function create_on_open_callback()
     return function(t)
-        -- 保留此函数以便将来添加自定义终端初始化逻辑
+        vim.keymap.set("n", "q", function()
+            t:toggle()
+        end, {
+            buffer = t.bufnr,
+            silent = true,
+            desc = "隐藏终端",
+        })
     end
 end
 
