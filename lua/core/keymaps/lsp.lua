@@ -21,6 +21,14 @@ function M.on_attach(client, bufnr)
 	end
 	map("n", "gd", vim.lsp.buf.definition, "跳转到定义")
 	map("n", "gD", vim.lsp.buf.declaration, "跳转到声明")
+	map("n", "grr", function()
+		require("telescope.builtin").lsp_references({
+			include_current_line = true,
+		})
+	end, "查找引用")
+	map("n", "gri", function()
+		require("telescope.builtin").lsp_implementations()
+	end, "跳转到实现")
 	map("n", "K", function()
 		M.focus_float_or(vim.lsp.buf.hover)
 	end, "悬浮文档 / 聚焦浮窗")

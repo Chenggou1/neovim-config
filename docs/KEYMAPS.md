@@ -323,8 +323,8 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | `gD`         | 跳转到声明              |
 | `gra`        | 代码操作（Neovim 原生） |
 | `grn`        | 重命名符号（Neovim 原生） |
-| `grr`        | 查找引用（Neovim 原生） |
-| `gri`        | 跳转到实现（Neovim 原生） |
+| `grr`        | 使用 Telescope 查找引用 |
+| `gri`        | 使用 Telescope 跳转到实现 |
 | `grt`        | 跳转到类型定义（Neovim 原生） |
 | `grx`        | 运行 CodeLens（Neovim 原生） |
 | `K`          | 显示悬浮文档 / 聚焦已有浮窗 |
