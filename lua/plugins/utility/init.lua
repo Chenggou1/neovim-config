@@ -6,6 +6,7 @@ return {
 	require("plugins.utility.autopairs"),
 	require("plugins.utility.nvim_numbertoggle"),
 	require("plugins.utility.neov_ime"),
+	require("plugins.utility.im_select"),
 	require("plugins.utility.sidekick"),
 	require("plugins.utility.persistence"),
 	require("plugins.utility.yanky"),

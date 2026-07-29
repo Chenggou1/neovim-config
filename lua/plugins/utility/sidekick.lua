@@ -19,10 +19,10 @@ return {
 		{
 			"<leader>kv",
 			function()
-				require("sidekick.cli").send({ msg = "{selection}" })
+				require("sidekick.cli").send({ msg = "{position}" })
 			end,
 			mode = "x",
-			desc = "Codex: 发送选区",
+			desc = "Codex: 发送选区位置",
 		},
 		{
 			"<leader>kp",

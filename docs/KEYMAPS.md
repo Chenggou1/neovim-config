@@ -321,11 +321,17 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | ------------ | ----------------------- |
 | `gd`         | 跳转到定义              |
 | `gD`         | 跳转到声明              |
-| `gr`         | 查找引用                |
-| `gi`         | 跳转到实现              |
+| `gra`        | 代码操作（Neovim 原生） |
+| `grn`        | 重命名符号（Neovim 原生） |
+| `grr`        | 查找引用（Neovim 原生） |
+| `gri`        | 跳转到实现（Neovim 原生） |
+| `grt`        | 跳转到类型定义（Neovim 原生） |
+| `grx`        | 运行 CodeLens（Neovim 原生） |
 | `K`          | 显示悬浮文档 / 聚焦已有浮窗 |
 | `<leader>cn` | 重命名符号              |
 | `<leader>ca` | 代码操作（Code Action） |
+
+`gr` 是 Neovim 原生 LSP 前缀，which-key 会显示中文操作提示。原生 `gi` 保持“回到上次插入位置并进入 Insert 模式”的编辑语义。
 
 💡 **Inlay Hints（类型提示）**：
 
@@ -602,7 +608,7 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | ------------ | ------------- | ----------------------- |
 | `<leader>ks` | Normal        | 选择并打开 Coding Agent |
 | `<leader>kf` | Normal        | 发送当前文件            |
-| `<leader>kv` | Visual        | 发送当前选区            |
+| `<leader>kv` | Visual        | 发送选区的文件路径及行列范围 |
 | `<leader>kp` | Normal/Visual | 输入提示并发送上下文    |
 | `<leader>kw` | Normal        | 解释光标下的单词（附文件位置） |
 

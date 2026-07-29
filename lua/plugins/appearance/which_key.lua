@@ -34,6 +34,15 @@ return {
 			{ "gcO", desc = "在上方插入注释" },
 			{ "gcA", desc = "在行尾添加注释" },
 
+			-- Neovim 原生 LSP 快捷键
+			{ "gr", group = "LSP 操作" },
+			{ "gra", desc = "代码操作" },
+			{ "grn", desc = "重命名" },
+			{ "grr", desc = "查找引用" },
+			{ "gri", desc = "跳转到实现" },
+			{ "grt", desc = "跳转到类型定义" },
+			{ "grx", desc = "运行 CodeLens" },
+
 			-- 隐藏简单剪贴板快捷键，保留映射本身
 			{ "<leader>y", hidden = true, mode = { "n", "v" } },
 			{ "<leader>p", hidden = true, mode = { "n", "v" } },

@@ -190,6 +190,15 @@
 **仓库**: `sitiom/nvim-numbertoggle`
 **作用**: 自动切换行号显示模式，Normal 模式显示相对行号（便于跳转），Insert 模式显示绝对行号（便于定位）
 
+### neov-ime.nvim
+**仓库**: `sevenc-nanashi/neov-ime.nvim`
+**作用**: 为 Neovide 提供输入法预编辑文本显示支持
+
+### im-select.nvim
+**仓库**: `keaising/im-select.nvim`
+**作用**: 离开 Insert/命令行模式时切换到英文输入法，进入 Insert 模式时恢复此前的输入法
+**系统后端**: macOS 使用 `macism`，Windows/WSL 使用 `im-select.exe`，Linux 自动检测 `fcitx5-remote`、`ibus` 或 `fcitx-remote`
+
 ### yanky.nvim
 **仓库**: `gbprod/yanky.nvim`
 **作用**: 管理最近 30 条复制历史，支持搜索历史、粘贴后用 Ctrl-p/Ctrl-n 切换内容；与系统剪贴板独立
@@ -200,7 +209,7 @@
 
 ### sidekick.nvim
 **仓库**: `folke/sidekick.nvim`
-**作用**: 在 Neovim 中使用 Codex 等 Coding Agent，支持发送当前文件、选区和自定义提示；恢复工作区时重建最近的 Codex 会话
+**作用**: 在 Neovim 中使用 Codex 等 Coding Agent，支持发送当前文件、选区位置和自定义提示；恢复工作区时重建最近的 Codex 会话
 
 ### urlview.nvim
 **仓库**: `axieax/urlview.nvim`

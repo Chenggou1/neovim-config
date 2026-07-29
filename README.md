@@ -17,6 +17,7 @@
 - 🎯 **快速跳转**：flash.nvim 增强 f/t 跳转，支持可视化标签
 - 💾 **工作区恢复**：重新打开目录时自动恢复文件、阅读位置、布局、Neo-tree 和 Codex 窗口
 - 📋 **复制历史**：Yanky 保存最近 30 条复制内容，可搜索并切换历史粘贴
+- 🌐 **输入法切换**：离开 Insert 模式时自动切换英文，重新进入时恢复此前的输入法
 
 详细插件列表请查看：**[docs/PLUGINS.md](docs/PLUGINS.md)**
 
@@ -38,6 +39,7 @@
 | **ripgrep** | Telescope 全局搜索 | 强烈推荐 | `brew install ripgrep` / `apt install ripgrep` |
 | **fd** | venv-selector 搜索 Python 虚拟环境 | 开发 Python 时必须 | `brew install fd` / `apt install fd-find` |
 | **Nerd Font** | 图标显示 | 推荐 | 下载 [JetBrainsMono Nerd Font](https://www.nerdfonts.com/) |
+| **输入法后端** | Normal 模式自动切换英文 | 使用中文等输入法时推荐 | macOS: `macism`；Windows/WSL: `im-select.exe`；Linux: Fcitx5/Fcitx/IBus |
 
 **快速安装**：
 ```bash
@@ -97,9 +99,12 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 | `<leader>"` | 查看复制历史 |
 | `<A-j>` / `<A-k>` | 向下/向上移动当前行或选区 |
 | `<leader>ks` | 选择并打开 Coding Agent |
+| `<leader>kv` | 发送 Visual 选区的文件及行列范围 |
 | `<leader>cf` | 格式化代码 |
 | `<leader>cn` | LSP 重命名 |
 | `<leader>ca` | 代码操作 |
+| `grr` | LSP 查找引用 |
+| `gri` | LSP 跳转到实现 |
 | `<leader>vs` | 选择 Python 虚拟环境 |
 | `s` | Flash 快速跳转 |
 
