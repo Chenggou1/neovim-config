@@ -14,6 +14,12 @@ function M.on_attach(_, bufnr)
     map("<leader>ca", function()
         vim.cmd.RustLsp("codeAction")
     end, "代码操作")
+    map("<leader>cd", function()
+        vim.cmd.RustLsp({ "renderDiagnostic", "current" })
+    end, "渲染 Rust 诊断")
+    map("<leader>cm", function()
+        require("core.rust.macro_expansion").expand()
+    end, "展开宏")
 end
 
 return M

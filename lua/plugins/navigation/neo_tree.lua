@@ -15,7 +15,7 @@ return {
 		require("neo-tree").setup({
 			close_if_last_window = true,
 			enable_git_status = true,
-			enable_diagnostics = false,
+			enable_diagnostics = true,
 
 			-- ✨ 统一窗口设置
 			window = {
@@ -52,6 +52,20 @@ return {
 
 			-- ✨ Git 符号
 			default_component_configs = {
+				diagnostics = {
+					symbols = {
+						error = "E",
+						warn = "W",
+						info = "I",
+						hint = "H",
+					},
+					highlights = {
+						error = "DiagnosticSignError",
+						warn = "DiagnosticSignWarn",
+						info = "DiagnosticSignInfo",
+						hint = "DiagnosticSignHint",
+					},
+				},
 				git_status = {
 					align = "right",
 					symbols = {
