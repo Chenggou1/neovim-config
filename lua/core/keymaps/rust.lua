@@ -18,7 +18,7 @@ function M.on_attach(_, bufnr)
         vim.cmd.RustLsp({ "renderDiagnostic", "current" })
     end, "渲染 Rust 诊断")
     map("<leader>cm", function()
-        require("core.rust.macro_expansion").expand()
+        vim.cmd.RustLsp({ "expandMacro", "float" })
     end, "展开宏")
 end
 

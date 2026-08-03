@@ -4,6 +4,11 @@ local utils = require("core.utils")
 local cmp_lsp = utils.safe_require("cmp_nvim_lsp")
 
 vim.g.rustaceanvim = {
+    tools = {
+        float_win_config = {
+            border = "rounded",
+        },
+    },
     server = {
         capabilities = cmp_lsp and cmp_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities(),
         on_attach = function(client, bufnr)
@@ -21,6 +26,6 @@ vim.g.rustaceanvim = {
 
 return {
     "mrcjkb/rustaceanvim",
-    version = "^9",
+    version = "9.1.0",
     lazy = false, -- rustaceanvim 自行管理按需加载
 }
