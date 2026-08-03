@@ -37,6 +37,7 @@
 | `<leader>"`  | Normal        | 搜索最近 30 条复制历史      |
 | `<leader>y`  | Normal/Visual | 复制到 macOS/系统剪贴板     |
 | `<leader>cl` | Normal        | 复制光标所在位置的链接      |
+| `<leader>cL` | Normal        | 复制并打开光标所在位置的链接 |
 | `<leader>p`  | Normal/Visual | 从 macOS/系统剪贴板粘贴     |
 
 💡 **提示**：
