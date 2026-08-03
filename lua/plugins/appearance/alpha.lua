@@ -1,7 +1,7 @@
 return {
 	"goolord/alpha-nvim",
 	event = "VimEnter",
-	dependencies = { "ahmedkhalf/project.nvim" },
+	dependencies = { "DrKJeff16/project.nvim" },
 	config = function()
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.dashboard")
@@ -49,53 +49,12 @@ return {
 				opts = { spacing = 0 },
 			}
 
-			local function is_excluded_project(project_path)
-				local home = vim.fn.expand("~")
-				local excluded_prefixes = {
-					home .. "/.local/share/nvim/mason/",
-					home .. "/.rustup/",
-				}
-
-				for _, prefix in ipairs(excluded_prefixes) do
-					if vim.startswith(project_path, prefix) then
-						return true
-					end
-				end
-
-				return false
-			end
-
 			local function read_recent_projects()
-				local history_file = vim.fn.stdpath("data") .. "/project_nvim/project_history"
-				local root_markers = { ".git", "pyproject.toml", "package.json", "Makefile", "CMakeLists.txt" }
-				local history = {}
+				local history = require("project").get_recent_projects(true)
 				local recent_projects = {}
-				local seen = {}
-
-				if vim.fn.filereadable(history_file) == 1 then
-					for line in io.lines(history_file) do
-						if line ~= "" then
-							table.insert(history, line)
-						end
-					end
-				end
-
 				for i = #history, 1, -1 do
-					local project_path = history[i]
-					local normalized_path = vim.fn.fnamemodify(project_path, ":p"):gsub("/$", "")
-					local root = vim.fs.root(normalized_path, root_markers)
-					if root and root ~= "" then
-						normalized_path = root:gsub("/$", "")
-					end
-					if seen[normalized_path] == nil
-						and vim.fn.isdirectory(normalized_path) == 1
-						and not is_excluded_project(normalized_path)
-					then
-						seen[normalized_path] = true
-						table.insert(recent_projects, normalized_path)
-					end
+					table.insert(recent_projects, history[i])
 				end
-
 				return recent_projects
 			end
 

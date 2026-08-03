@@ -157,7 +157,7 @@
 **作用**: 窗口选择器，用于在多个窗口中快速选择目标窗口
 
 ### project.nvim
-**仓库**: `ahmedkhalf/project.nvim`
+**仓库**: `DrKJeff16/project.nvim`
 **作用**: 项目管理插件，自动检测和记录项目（通过 .git、pyproject.toml 等），提供最近项目列表，与启动面板集成
 
 ### outline.nvim
