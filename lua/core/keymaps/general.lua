@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup()
 	vim.g.mapleader = " "
+	local utils = require("core.utils")
 
 	local function map(mode, lhs, rhs, desc)
 		vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = desc })
@@ -27,9 +28,20 @@ function M.setup()
 
 	-- Python 虚拟环境管理由 venv-selector.nvim 插件提供（<leader>vs 选择，<leader>vd 停用）
 
-	-- 历史导航：Leader+方向键 后退/前进
-	map("n", "<leader><Left>", "<C-o>", "返回上一位置")
-	map("n", "<leader><Right>", "<C-i>", "前进到下一位置")
+	-- 历史导航：只在普通编辑窗口中后退/前进，避免影响 Diffview 等特殊视图
+	local function jump_history(key)
+		return function()
+			if not utils.is_normal_file_buffer(0) or vim.wo.diff then
+				return
+			end
+
+			local keys = vim.api.nvim_replace_termcodes(key, true, false, true)
+			vim.api.nvim_feedkeys(keys, "n", false)
+		end
+	end
+
+	map("n", "<leader><Left>", jump_history("<C-o>"), "返回上一位置")
+	map("n", "<leader><Right>", jump_history("<C-i>"), "前进到下一位置")
 
 	-- 标签页管理（Leader b 系列，解决 macOS Neovide 远程连接容器时 Alt 键失效问题）
 	map("n", "<leader>bn", "<cmd>tabnew | Alpha<CR>", "新建标签页")
