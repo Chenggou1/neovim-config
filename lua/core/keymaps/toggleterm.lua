@@ -12,7 +12,7 @@ function M.setup(term_manager, resolve_cwd_fn)
 		vim.cmd("TermNew dir=" .. vim.fn.fnameescape(cwd) .. " name=" .. name)
 	end, { desc = "新建终端" })
 
-	vim.keymap.set("n", "<leader>tt", "<cmd>TermSelect<CR>", { desc = "选择终端" })
+	vim.keymap.set("n", "<leader>ts", "<cmd>TermSelect<CR>", { desc = "选择终端" })
 
 	-- Terminal mode：使用 jk 退出到 Normal mode（保留 ESC 用于终端程序如 Claude Code）
 	vim.keymap.set("t", "jk", [[<C-\><C-n>]], { noremap = true, desc = "退出终端模式" })
