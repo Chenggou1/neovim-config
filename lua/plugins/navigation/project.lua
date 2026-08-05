@@ -4,14 +4,14 @@ return {
 	event = "VeryLazy",
 	config = function()
 		require("project").setup({
-			-- 自动检测并记录实际打开的项目
-			manual_mode = false,
+			-- 工作区根只由启动目录或项目选择器显式决定。
+			-- LSP 和语言构建文件可以有各自的子 workspace，但不应自动修改 cwd。
+			manual_mode = true,
 			lsp = {
-				enabled = true,
-				no_fallback = false,
+				enabled = false,
 			},
-			-- 用于检测项目的文件/目录
-			patterns = { ".git", "pyproject.toml", "package.json", "Cargo.toml", "Makefile", "CMakeLists.txt" },
+			-- 仅供手动根目录检测使用，避免把 monorepo 内的语言 workspace 当成编辑器工作区。
+			patterns = { ".git", ".hg", ".svn" },
 			-- 排除工具链和插件内部目录，避免被记录为最近项目
 			exclude_dirs = {
 				-- 通用
