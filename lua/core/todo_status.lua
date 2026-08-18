@@ -18,6 +18,26 @@ local function reset_counts()
 	end
 end
 
+local function get_search_keywords()
+	local aliases = {}
+	for _, label in ipairs(labels) do
+		aliases[label] = label
+	end
+
+	local ok, config = pcall(require, "todo-comments.config")
+	if ok then
+		for keyword, label in pairs(config.keywords or {}) do
+			if aliases[label] then
+				aliases[keyword] = label
+			end
+		end
+	end
+
+	local keywords = vim.tbl_keys(aliases)
+	table.sort(keywords)
+	return table.concat(keywords, ","), aliases
+end
+
 local function refresh_lualine()
 	local ok, lualine = pcall(require, "lualine")
 	if ok then
@@ -35,19 +55,21 @@ function M.refresh()
 		return
 	end
 
+	local keywords, aliases = get_search_keywords()
 	pending = true
 	search.search(function(results)
 		reset_counts()
 		for _, item in ipairs(results or {}) do
-			if counts[item.tag] ~= nil then
-				counts[item.tag] = counts[item.tag] + 1
+			local label = aliases[item.tag] or item.tag
+			if counts[label] ~= nil then
+				counts[label] = counts[label] + 1
 			end
 		end
 		pending = false
 		refresh_lualine()
 	end, {
 		cwd = vim.fn.getcwd(),
-		keywords = table.concat(labels, ","),
+		keywords = keywords,
 		disable_not_found_warnings = true,
 	})
 end
