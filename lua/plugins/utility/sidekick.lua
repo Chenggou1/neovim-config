@@ -42,6 +42,12 @@ return {
 	},
 	opts = {
 		cli = {
+			win = {
+				layout = "float",
+				float = {
+					border = "rounded",
+				},
+			},
 			context = {
 				word = function(ctx)
 					return vim.api.nvim_win_call(ctx.win, function()
