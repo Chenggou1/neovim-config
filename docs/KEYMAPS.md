@@ -564,28 +564,6 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 
 ---
 
-## Python 开发
-
-| 快捷键       | 功能                                    |
-| ------------ | --------------------------------------- |
-| `<leader>vs` | 选择/激活 Python 虚拟环境（Telescope）  |
-| `<leader>vd` | 停用当前 Python 虚拟环境                |
-
-💡 **提示**：
-- `<leader>vs` 打开 Telescope 选择器，支持：
-  - 项目 `.venv` 目录（uv、virtualenv）
-  - Poetry 环境
-  - Conda/Miniconda 环境
-  - 系统 Python
-- 选择环境后自动：
-  - 重启 Pyright LSP
-  - 激活终端 shell 环境
-  - 缓存选择（下次自动激活）
-- `<leader>vd` 停用后恢复使用系统 Python
-- 状态栏左侧显示当前激活的环境名（如 "󰌠 .venv"）
-
----
-
 ## 补全与 AI 建议
 
 ### 补全菜单（nvim-cmp）
@@ -611,6 +589,23 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | `<leader>kp` | Normal/Visual | 输入提示并发送上下文    |
 | `<leader>kw` | Normal        | 解释光标下的单词（附文件位置） |
 
+## 运行当前文件
+
+| 快捷键 / 命令 | 功能 |
+| --- | --- |
+| `<leader>cr` / `:RunFile` | 保存并在 toggleterm 中运行当前文件 |
+
+- Python：仅支持 uv 项目，执行 `uv run python <当前文件>`。
+- Rust：仅支持 `src/main.rs` 与 `src/bin/<name>.rs`，执行 `cargo run --bin <name>`。
+- C/C++：以 `cc` / `c++` 独立编译当前文件；二进制写入项目根目录 `.cache/nvim-run/`。
+- 多文件、依赖库或 CMake target 不会自动推断；这类 C/C++ 项目请使用现有 CMake 快捷键。
+
+## C/C++ 诊断
+
+- clangd 优先以 `compile_commands.json`、`compile_flags.txt` 或 `.git` 定位项目根目录。
+- 对没有这些标记的独立 `.c` / `.cpp` 文件，clangd 以文件所在目录启动，仍提供补全、跳转和诊断。
+- 诊断默认显示为代码下划线；将光标停在对应位置可查看诊断浮窗。
+
 ## 字体缩放（仅 Neovide）
 
 | 快捷键  | 功能         |
@@ -635,5 +630,4 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | `<leader>o` | 启动面板（Dashboard）               |
 | `<leader>m` | CMake 构建                          |
 | `<leader>t` | 终端（Terminal）                    |
-| `<leader>v` | Python 虚拟环境（Venv）             |
 | `<leader>z` | 折叠（Fold）                        |

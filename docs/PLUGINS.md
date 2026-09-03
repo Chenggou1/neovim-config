@@ -16,7 +16,7 @@
 
 ### lualine.nvim
 **仓库**: `nvim-lualine/lualine.nvim`
-**作用**: 轻量级状态栏，显示模式、分支、文件名、Python 虚拟环境、编码、文件类型等信息
+**作用**: 轻量级状态栏，显示模式、分支、文件名、编码、文件类型等信息
 
 ### mini.nvim
 **仓库**: `echasnovski/mini.nvim`
@@ -45,11 +45,7 @@
 
 ### nvim-lspconfig
 **仓库**: `neovim/nvim-lspconfig`
-**作用**: LSP 客户端配置，支持 Pyright (Python)、clangd (C/C++)、jsonls (JSON)、marksman (Markdown)
-
-### venv-selector.nvim
-**仓库**: `linux-cultist/venv-selector.nvim`
-**作用**: Python 虚拟环境选择器，支持 .venv、Poetry、Conda 等环境，自动配置 LSP 和终端激活
+**作用**: LSP 客户端配置，支持 Pyright (Python)、clangd (C/C++)、jsonls (JSON)、marksman (Markdown)。clangd 优先使用项目根目录；对没有编译数据库、编译 flags 或 Git 根目录的独立 C/C++ 文件，则以文件所在目录启动。
 
 ### mason.nvim
 **仓库**: `mason-org/mason.nvim`
@@ -170,7 +166,7 @@
 
 ### toggleterm.nvim
 **仓库**: `akinsho/toggleterm.nvim`
-**作用**: 终端管理器，支持多终端、浮动终端、自动激活 Python 虚拟环境
+**作用**: 终端管理器，支持多终端和浮动终端
 
 ### todo-comments.nvim
 **仓库**: `folke/todo-comments.nvim`

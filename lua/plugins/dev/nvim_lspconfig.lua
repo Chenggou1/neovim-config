@@ -30,7 +30,7 @@ return {
             end
         end
         --------------------------------------------------------------------------
-        -- ① Pyright ─ 类型检查（虚拟环境由 venv-selector.nvim 插件自动配置）
+        -- ① Pyright ─ 类型检查（uv 项目使用根目录 .venv）
         --------------------------------------------------------------------------
         vim.lsp.config.pyright = {
             capabilities = capabilities,
@@ -79,16 +79,15 @@ return {
                     return -- 不调用 on_dir，跳过 LSP 启动
                 end
 
-                -- 正常文件：查找项目根目录并调用 on_dir 启动 LSP
-                local root = utils.find_project_root(bufnr, {
-                    "compile_commands.json",
-                    "compile_flags.txt",
-                    ".git",
-                })
-                if root then
-                    on_dir(root)
-                end
-            end,
+				-- 优先使用项目根目录；独立文件则以所在目录作为单文件 workspace。
+				local root = utils.find_project_root(bufnr, {
+					"compile_commands.json",
+					"compile_flags.txt",
+					".git",
+				})
+				root = root or vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":p:h")
+				on_dir(root)
+			end,
         }
 
         -- 启用 clangd

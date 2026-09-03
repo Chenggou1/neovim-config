@@ -43,3 +43,8 @@ vim.o.clipboard = ""
 -- 代码折叠由 nvim-ufo 插件管理，这里只保留基础的 treesitter 折叠表达式
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+-- 另存为或重命名后的 buffer 不一定会触发 BufReadPost，补做一次文件类型检测，
+-- 以确保 Tree-sitter 能为新文件名对应的语言附加高亮。
+vim.cmd("filetype plugin indent on")
+require("core.filetype_recovery").setup()

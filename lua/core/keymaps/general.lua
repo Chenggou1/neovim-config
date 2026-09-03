@@ -25,8 +25,7 @@ function M.setup()
 	map({ "n", "v", "o" }, "L", "$", "Jump to line end")
 
 	-- 折叠快捷键由 nvim-ufo 插件统一管理
-
-	-- Python 虚拟环境管理由 venv-selector.nvim 插件提供（<leader>vs 选择，<leader>vd 停用）
+	require("core.run_file").setup()
 
 	-- 历史导航：只在普通编辑窗口中后退/前进，避免影响 Diffview 等特殊视图
 	local function jump_history(key)

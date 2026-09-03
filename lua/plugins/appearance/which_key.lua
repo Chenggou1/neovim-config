@@ -21,9 +21,8 @@ return {
 			{ "<leader>g", group = "Git" },
 			{ "<leader>k", group = "Codex / AI" },
 			{ "<leader>m", group = "CMake" },
-			{ "<leader>r", group = "调整" },
+			{ "<leader>r", group = "运行" },
 			{ "<leader>t", group = "终端" },
-			{ "<leader>v", group = "Venv" },
 			{ "<leader>z", group = "折叠" },
 
 			-- g 开头的注释快捷键（Comment.nvim）

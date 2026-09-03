@@ -10,9 +10,9 @@
 - 🎨 **外观**：Rosé Pine Moon 主题，which-key 快捷键提示
 - 🔧 **开发工具**：LSP (Pyright/clangd/jsonls/marksman/buf)，智能补全
 - 📂 **导航**：neo-tree 文件树，Telescope 模糊搜索，Flash 快速跳转，项目管理
-- 🐍 **Python 支持**：venv-selector.nvim 虚拟环境管理（支持 .venv/Poetry/Conda），与 Pyright LSP 深度集成
+- 🐍 **Python 支持**：uv 管理项目 `.venv`，Pyright 提供类型检查与补全
 - 🌿 **Git 集成**：gitsigns 状态显示，diffview 可视化 diff 工具
-- 🖥️ **终端管理**：toggleterm 多终端支持，自动激活 Python venv
+- 🖥️ **终端管理**：toggleterm 多终端支持
 - 📐 **代码折叠**：基于 Tree-sitter 的智能折叠
 - 🎯 **快速跳转**：flash.nvim 增强 f/t 跳转，支持可视化标签
 - 💾 **工作区恢复**：重新打开目录时自动恢复文件、阅读位置、布局、Neo-tree 和 Codex 窗口
@@ -34,22 +34,21 @@
 | 工具 | 用途 | 是否必须 | 安装方式 |
 |------|------|---------|---------|
 | **Node.js** | Mason 安装部分工具的依赖 | 必须 | `brew install node` / [官网下载](https://nodejs.org/) |
-| **Python 3** | Python 开发环境 | 开发 Python 时必须 | `brew install python3` / `apt install python3` |
+| **uv** | Python 项目与虚拟环境管理 | 开发 Python 时必须 | `brew install uv` / [官方安装说明](https://docs.astral.sh/uv/getting-started/installation/) |
 | **C 编译器** | tree-sitter 编译语法解析器 | 必须 | `xcode-select --install` (macOS) / `apt install build-essential` (Linux) |
 | **ripgrep** | Telescope 全局搜索 | 强烈推荐 | `brew install ripgrep` / `apt install ripgrep` |
-| **fd** | venv-selector 搜索 Python 虚拟环境 | 开发 Python 时必须 | `brew install fd` / `apt install fd-find` |
 | **Nerd Font** | 图标显示 | 推荐 | 下载 [JetBrainsMono Nerd Font](https://www.nerdfonts.com/) |
 | **输入法后端** | Normal 模式自动切换英文 | 使用中文等输入法时推荐 | macOS: `macism`；Windows/WSL: `im-select.exe`；Linux: Fcitx5/Fcitx/IBus |
 
 **快速安装**：
 ```bash
 # macOS
-brew install node python3 ripgrep fd
+brew install node uv ripgrep
 xcode-select --install  # 安装 C 编译器
 brew install --cask font-jetbrains-mono-nerd-font
 
 # Ubuntu/Debian
-sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
+sudo apt install nodejs build-essential ripgrep
 ```
 
 ### Mason 自动安装的工具 ✅
@@ -102,14 +101,26 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
 | `<leader>ks` | 选择并打开 Coding Agent |
 | `<leader>kv` | 发送 Visual 选区的文件及行列范围 |
 | `<leader>cf` | 格式化代码 |
+| `<leader>cr` | 保存并运行当前 Python、Rust、C 或 C++ 文件 |
 | `<leader>cn` | LSP 重命名 |
 | `<leader>ca` | 代码操作 |
 | `grr` | LSP 查找引用 |
 | `gri` | LSP 跳转到实现 |
-| `<leader>vs` | 选择 Python 虚拟环境 |
 | `s` | Flash 快速跳转 |
 
 完整的快捷键速查表请查看：**[docs/KEYMAPS.md](docs/KEYMAPS.md)**
+
+## 运行代码
+
+使用 `<leader>cr` 或 `:RunFile` 保存并运行当前文件，输出显示在 toggleterm 中：
+
+- Python：仅限 uv 项目，执行 `uv run python <当前文件>`，无需激活虚拟环境。
+- Rust：支持 `src/main.rs` 和 `src/bin/<name>.rs`，运行对应的 Cargo binary。
+- C/C++：独立编译当前文件，产物存放于项目根目录 `.cache/nvim-run/`。
+
+多文件、外部依赖或 CMake target 不会自动推断；请使用 CMake 快捷键运行这类 C/C++ 项目。
+
+clangd 同时支持项目与独立 C/C++ 文件：优先使用编译数据库、编译 flags 或 Git 根目录；没有这些标记时以当前文件目录启动。诊断默认以代码下划线显示。
 
 ## 常见问题 / 排错
 
@@ -121,6 +132,7 @@ sudo apt install nodejs python3 python3-pip build-essential ripgrep fd-find
   ```bash
   rustup component add rust-analyzer
   ```
+- **独立 C/C++ 文件没有诊断**：确认 `clangd` 在 `PATH` 中；打开文件后，clangd 会自动以文件所在目录启动。
 
 ## 升级与维护
 

@@ -7,7 +7,6 @@ return {
 	require("plugins.dev.nvim_cmp"),
 	require("plugins.dev.mason"),
 	require("plugins.dev.nvim_lspconfig"),
-	require("plugins.dev.venv_selector"),         -- Python 虚拟环境选择器
 	require("plugins.dev.cmake_tools"),
 	require("plugins.dev.tiny_inline_diagnostic"),
 	require("plugins.dev.comment"),
