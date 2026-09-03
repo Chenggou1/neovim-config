@@ -47,6 +47,12 @@ return {
 				float = {
 					border = "rounded",
 				},
+				keys = {
+					nav_left = { "<C-h>", "hide", mode = "nt", expr = false },
+					nav_down = { "<C-j>", "hide", mode = "nt", expr = false },
+					nav_up = { "<C-k>", "hide", mode = "nt", expr = false },
+					nav_right = { "<C-l>", "hide", mode = "nt", expr = false },
+				},
 			},
 			context = {
 				word = function(ctx)
