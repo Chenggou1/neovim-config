@@ -31,6 +31,15 @@ return {
 			},
 		})
 
+		-- manual_mode 不监听 BufEnter，因而从项目根目录启动 Neovim 时也不会
+		-- 自动写入历史。只登记当前就是 Git 根目录的启动路径，不扫描子目录、
+		-- 不改变 cwd，以保留 monorepo 的手动工作区策略。
+		local cwd = vim.uv.cwd()
+		if cwd and vim.fn.isdirectory(vim.fs.joinpath(cwd, ".git")) == 1 then
+			require("project.core").set_pwd(cwd, "startup")
+			require("project.util.history").write_history()
+		end
+
 		-- 与 telescope 集成
 		require("telescope").load_extension("projects")
 	end,

@@ -90,8 +90,11 @@ return {
 			local function open_project(project_path)
 				local alpha_buf = vim.api.nvim_get_current_buf()
 				vim.schedule(function()
-					-- 切换工作目录
-					vim.cmd("cd " .. vim.fn.fnameescape(project_path))
+					-- 通过 project.nvim 切换并写入历史；直接 :cd 会绕过
+					-- 手动模式下的项目记录，导致启动面板一直显示旧缓存。
+					if not require("project.core").set_pwd(project_path, "dashboard") then
+						return
+					end
 
 					-- 先保留一个普通编辑窗口，避免只剩 neo-tree 时触发退出。
 					if vim.api.nvim_buf_is_valid(alpha_buf) and vim.api.nvim_get_current_buf() == alpha_buf then
