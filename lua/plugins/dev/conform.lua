@@ -17,6 +17,9 @@ return {
                 json = { "prettier" },
                 jsonc = { "prettier" },  -- JSON with Comments
                 markdown = { "prettier" },
+                -- C/C++ 直接使用 clang-format；它会读取项目或全局 .clang-format。
+                c = { "clang-format" },
+                cpp = { "clang-format" },
                 -- Python：优先使用 uvx 的全局 ruff；若无则退回系统 ruff
                 -- 顺序：fix -> format
                 python = {"ruff_fix", "ruff_format" },
