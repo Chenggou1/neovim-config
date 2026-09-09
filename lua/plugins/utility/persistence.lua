@@ -49,13 +49,30 @@ return {
 			group = state_group,
 			pattern = "PersistenceLoadPost",
 			callback = function()
-				if vim.fn.filereadable(neo_tree_state_file()) == 0 then
-					return
-				end
-
-				-- 让 session 先恢复并聚焦原文件，再打开文件树。
 				vim.schedule(function()
-					vim.cmd("Neotree show")
+					-- session 恢复通过 :source 打开缓冲区，可能跳过文件类型检测。
+					-- 先根据路径补齐 filetype，再让 FileType 回调附着 Treesitter。
+					for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+						if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == "" then
+							if vim.bo[buf].filetype == "" then
+								local filetype = vim.filetype.match({ buf = buf })
+								if filetype then
+									vim.bo[buf].filetype = filetype
+								end
+							end
+
+							if vim.bo[buf].filetype ~= "" then
+								if pcall(vim.treesitter.start, buf) then
+									vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+								end
+							end
+						end
+					end
+
+					if vim.fn.filereadable(neo_tree_state_file()) == 1 then
+						-- 让 session 先恢复并聚焦原文件，再打开文件树。
+						vim.cmd("Neotree show")
+					end
 				end)
 			end,
 		})
