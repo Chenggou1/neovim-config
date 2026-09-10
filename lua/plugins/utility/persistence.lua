@@ -6,10 +6,10 @@ return {
 		branch = false,
 	},
 	config = function(_, opts)
-		-- 只恢复普通文件及必要的编辑布局。
-		-- 不保存空白窗口、帮助页、终端和本地选项；Neo-tree 的开关状态在下方单独处理。
+		-- 只恢复窗口中实际打开的普通文件及必要的编辑布局。
+		-- 不保存隐藏 buffer，避免恢复 Rust 标准库、Cargo registry 等跳转产生的源码；
+		-- 同时不保存空白窗口、帮助页、终端和本地选项。Neo-tree 的开关状态在下方单独处理。
 		vim.opt.sessionoptions = {
-			"buffers",
 			"curdir",
 			"folds",
 			"tabpages",
