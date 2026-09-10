@@ -47,6 +47,10 @@
 **仓库**: `neovim/nvim-lspconfig`
 **作用**: LSP 客户端配置，支持 Pyright (Python)、clangd (C/C++)、jsonls (JSON)、marksman (Markdown)。clangd 优先使用项目根目录；对没有编译数据库、编译 flags 或 Git 根目录的独立 C/C++ 文件，则以文件所在目录启动。
 
+### hover.nvim
+**仓库**: `lewis6991/hover.nvim`
+**作用**: 统一显示 LSP 与语言参考文档。C++ 文件可在 clangd hover 和 cppman/cppreference 手册之间切换。
+
 ### mason.nvim
 **仓库**: `mason-org/mason.nvim`
 **作用**: LSP 服务器、DAP、Linter、Formatter 的统一管理器

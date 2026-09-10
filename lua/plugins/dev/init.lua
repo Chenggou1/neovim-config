@@ -7,6 +7,7 @@ return {
 	require("plugins.dev.nvim_cmp"),
 	require("plugins.dev.mason"),
 	require("plugins.dev.nvim_lspconfig"),
+	require("plugins.dev.hover"),
 	require("plugins.dev.cmake_tools"),
 	require("plugins.dev.tiny_inline_diagnostic"),
 	require("plugins.dev.comment"),

@@ -37,13 +37,14 @@
 | **uv** | Python 项目与虚拟环境管理 | 开发 Python 时必须 | `brew install uv` / [官方安装说明](https://docs.astral.sh/uv/getting-started/installation/) |
 | **C 编译器** | tree-sitter 编译语法解析器 | 必须 | `xcode-select --install` (macOS) / `apt install build-essential` (Linux) |
 | **ripgrep** | Telescope 全局搜索 | 强烈推荐 | `brew install ripgrep` / `apt install ripgrep` |
+| **cppman** | 在 C++ hover 中查看 cppreference 手册与示例 | 开发 C++ 时推荐 | `brew install cppman` / `apt install cppman` |
 | **Nerd Font** | 图标显示 | 推荐 | 下载 [JetBrainsMono Nerd Font](https://www.nerdfonts.com/) |
 | **输入法后端** | Normal 模式自动切换英文 | 使用中文等输入法时推荐 | macOS: `macism`；Windows/WSL: `im-select.exe`；Linux: Fcitx5/Fcitx/IBus |
 
 **快速安装**：
 ```bash
 # macOS
-brew install node uv ripgrep
+brew install node uv ripgrep cppman
 xcode-select --install  # 安装 C 编译器
 brew install --cask font-jetbrains-mono-nerd-font
 

@@ -329,10 +329,14 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 | `grt`        | 跳转到类型定义（Neovim 原生） |
 | `grx`        | 运行 CodeLens（Neovim 原生） |
 | `K`          | 显示悬浮文档 / 聚焦已有浮窗 |
+| `<C-n>`      | 切换到下一个文档来源       |
+| `<C-p>`      | 切换到上一个文档来源       |
 | `<leader>cn` | 重命名符号              |
 | `<leader>ca` | 代码操作（Code Action） |
 
 `gr` 是 Neovim 原生 LSP 前缀，which-key 会显示中文操作提示。原生 `gi` 保持“回到上次插入位置并进入 Insert 模式”的编辑语义。
+
+在 C++ 文件中，`K` 首先显示 clangd 文档；按 `<C-n>` 可切换到 cppman 提供的 cppreference 手册与示例。再次按 `K` 会聚焦已有文档浮窗。
 
 💡 **Inlay Hints（类型提示）**：
 
