@@ -22,9 +22,11 @@ function M.mapping(cmp, luasnip)
 			select = false,
 		}),
 
-		-- Tab: 应用当前选中项；尚未选中时应用第一项
+		-- Tab: snippet 展开后跳到下一个占位符；否则确认补全项
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
+			if luasnip.locally_jumpable(1) then
+				luasnip.jump(1)
+			elseif cmp.visible() then
 				if not cmp.get_selected_entry() then
 					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 				end
@@ -32,6 +34,15 @@ function M.mapping(cmp, luasnip)
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = false,
 				})
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+
+		-- Shift-Tab: 返回 snippet 的上一个占位符
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
 			else
 				fallback()
 			end
