@@ -12,4 +12,5 @@ return {
 	require("plugins.dev.tiny_inline_diagnostic"),
 	require("plugins.dev.comment"),
 	require("plugins.dev.rustaceanvim"),
+	require("plugins.dev.nvim_dap"),
 }

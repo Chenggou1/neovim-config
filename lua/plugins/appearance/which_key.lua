@@ -23,6 +23,7 @@ return {
 			{ "<leader>m", group = "CMake" },
 			{ "<leader>r", group = "运行" },
 			{ "<leader>t", group = "终端" },
+			{ "<leader>x", group = "调试" },
 			{ "<leader>z", group = "折叠" },
 
 			-- g 开头的注释快捷键（Comment.nvim）
