@@ -604,6 +604,23 @@ Flash.nvim 提供基于标签的快速跳转功能，让你能快速定位到屏
 - C/C++：以 `cc` / `c++` 独立编译当前文件；二进制写入项目根目录 `.cache/nvim-run/`。
 - 多文件、依赖库或 CMake target 不会自动推断；这类 C/C++ 项目请使用现有 CMake 快捷键。
 
+## 调试
+
+| 快捷键 | 功能 |
+| --- | --- |
+| `<leader>xb` | 切换断点 |
+| `<leader>xB` | 设置条件断点 |
+| `<leader>xp` | 设置日志点 |
+| `<leader>xc` | 选择调试目标；存在活动会话时继续执行 |
+| `<leader>xs` | 进入临时步进模式 |
+| `<leader>xt` | 终止调试 |
+| `<leader>xl` | 重新运行上次配置 |
+| `<leader>xr` | 打开调试 REPL |
+| `<leader>xu` | 切换调试界面 |
+| `<leader>xe` | 查看光标处或选中表达式 |
+
+C/C++ 首次启动时始终显示目标选择菜单，即使当前只有“调试当前文件”一项。确认后以 `cc` / `c++`、`-g -O0` 编译当前文件，并通过系统 `lldb-dap` 调试；产物写入项目根目录 `.cache/nvim-debug/`，不依赖 CMake。编译失败时不会启动调试会话。
+
 ## C/C++ 诊断
 
 - clangd 优先以 `compile_commands.json`、`compile_flags.txt` 或 `.git` 定位项目根目录。

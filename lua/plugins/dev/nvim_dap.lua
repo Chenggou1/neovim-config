@@ -10,6 +10,94 @@ local function dap_action(method, ...)
 	end
 end
 
+local function continue_or_select_target()
+	local dap = require("dap")
+	if dap.session() then
+		dap.continue()
+		return
+	end
+
+	local filetype = vim.bo.filetype
+	if filetype ~= "c" and filetype ~= "cpp" then
+		dap.continue()
+		return
+	end
+
+	local configurations = dap.configurations[filetype] or {}
+	if #configurations == 0 then
+		vim.notify("当前文件类型没有可用的调试目标", vim.log.levels.WARN, { title = "DAP" })
+		return
+	end
+
+	vim.ui.select(configurations, {
+		prompt = "选择调试目标: ",
+		format_item = function(configuration)
+			return configuration.name
+		end,
+	}, function(configuration)
+		if configuration then
+			dap.run(configuration, { filetype = filetype })
+		end
+	end)
+end
+
+local function compile_current_c_family()
+	local dap = require("dap")
+	local file = vim.api.nvim_buf_get_name(0)
+	if file == "" then
+		vim.notify("当前 buffer 尚未保存为文件", vim.log.levels.ERROR, { title = "DAP" })
+		return dap.ABORT
+	end
+
+	if vim.bo.modified then
+		vim.cmd("update")
+	end
+
+	local filetype = vim.bo.filetype
+	local compiler = filetype == "c" and "cc" or "c++"
+	local standard = filetype == "c" and "c17" or "c++20"
+	if vim.fn.executable(compiler) ~= 1 then
+		vim.notify(("未找到编译器：%s"):format(compiler), vim.log.levels.ERROR, { title = "DAP" })
+		return dap.ABORT
+	end
+
+	local root = vim.fs.root(file, { ".git", "CMakeLists.txt" }) or vim.fn.fnamemodify(file, ":p:h")
+	local relative = vim.fs.relpath(root, file) or vim.fn.fnamemodify(file, ":t")
+	local output_dir = root .. "/.cache/nvim-debug/" .. vim.fn.sha256(relative):sub(1, 16)
+	local output = output_dir .. "/" .. vim.fn.fnamemodify(file, ":t:r")
+	vim.fn.mkdir(output_dir, "p")
+
+	return coroutine.create(function(dap_run_co)
+		vim.system({
+			compiler,
+			"-std=" .. standard,
+			"-Wall",
+			"-Wextra",
+			"-Wpedantic",
+			"-g",
+			"-O0",
+			file,
+			"-o",
+			output,
+		}, { cwd = root, text = true }, function(result)
+			vim.schedule(function()
+				if result.code == 0 then
+					coroutine.resume(dap_run_co, output)
+					return
+				end
+
+				local message =
+					vim.trim((result.stderr and result.stderr ~= "" and result.stderr) or result.stdout or "")
+				if message == "" then
+					message = ("编译失败，退出码：%d"):format(result.code)
+				end
+				vim.notify(message, vim.log.levels.ERROR, { title = "C/C++ 调试编译失败" })
+				coroutine.resume(dap_run_co, dap.ABORT)
+			end)
+		end)
+	end)
+end
+
 local function leave_step_mode(options)
 	options = options or {}
 	if not step_mode.active then
@@ -62,7 +150,7 @@ end
 
 return {
 	"mfussenegger/nvim-dap",
-	ft = "python",
+	ft = { "python", "c", "cpp" },
 	dependencies = {
 		"mfussenegger/nvim-dap-python",
 		{
@@ -87,7 +175,7 @@ return {
 			end,
 			desc = "设置日志点",
 		},
-		{ "<leader>xc", dap_action("continue"), desc = "启动/继续" },
+		{ "<leader>xc", continue_or_select_target, desc = "选择调试目标/继续" },
 		{ "<leader>xs", enter_step_mode, desc = "进入临时步进模式" },
 		{ "<leader>xt", dap_action("terminate"), desc = "终止调试" },
 		{ "<leader>xl", dap_action("run_last"), desc = "重新运行上次配置" },
@@ -117,6 +205,33 @@ return {
 	config = function()
 		local dap = require("dap")
 		local dapui = require("dapui")
+
+		dap.adapters.lldb = function(callback)
+			local command = vim.fn.exepath("lldb-dap")
+			if command == "" then
+				vim.notify("未找到 lldb-dap，请先安装 LLDB", vim.log.levels.ERROR, { title = "DAP" })
+				return
+			end
+
+			callback({
+				type = "executable",
+				command = command,
+				name = "lldb",
+			})
+		end
+
+		dap.configurations.cpp = {
+			{
+				name = "调试当前文件",
+				type = "lldb",
+				request = "launch",
+				program = compile_current_c_family,
+				cwd = "${workspaceFolder}",
+				stopOnEntry = false,
+				args = {},
+			},
+		}
+		dap.configurations.c = dap.configurations.cpp
 
 		local function hide_non_dap_windows()
 			local has_neo_tree, neo_tree_command = pcall(require, "neo-tree.command")

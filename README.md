@@ -123,6 +123,12 @@ sudo apt install nodejs build-essential ripgrep
 
 clangd 同时支持项目与独立 C/C++ 文件：优先使用编译数据库、编译 flags 或 Git 根目录；没有这些标记时以当前文件目录启动。诊断默认以代码下划线显示。
 
+## 调试代码
+
+使用 `<leader>xc` 启动或继续调试。首次调试 C/C++ 文件时会显示目标选择菜单；当前提供“调试当前文件”，确认后使用 `cc` / `c++` 和 `-g -O0` 自动编译，再通过系统 `lldb-dap` 启动。调试产物存放于项目根目录 `.cache/nvim-debug/`，不依赖 CMake。
+
+调试前请确认 `lldb-dap` 在 `PATH` 中。macOS 安装 Xcode Command Line Tools 后通常已经提供；Linux 请通过发行版的 LLVM/LLDB 软件包安装。
+
 ## 常见问题 / 排错
 
 - **tree-sitter 编译失败**：确认已安装 GCC/Clang 等 C 编译器。

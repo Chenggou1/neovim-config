@@ -63,6 +63,18 @@
 **仓库**: `WhoIsSethDaniel/mason-tool-installer.nvim`
 **作用**: 自动安装和管理 formatters、linters 等开发工具（stylua、prettier、ruff、buf）
 
+### nvim-dap
+**仓库**: `mfussenegger/nvim-dap`
+**作用**: 调试客户端，支持通过项目 uv 环境中的 debugpy 调试 Python，以及通过系统 `lldb-dap` 调试当前 C/C++ 文件。C/C++ 调试会自动使用 `-g -O0` 编译，不依赖 CMake。
+
+### nvim-dap-ui
+**仓库**: `rcarriga/nvim-dap-ui`
+**作用**: 显示变量、调用栈、断点、监视表达式和调试控制台。
+
+### nvim-dap-virtual-text
+**仓库**: `theHamsta/nvim-dap-virtual-text`
+**作用**: 在源码旁显示当前调试会话中的变量值。
+
 ### schemastore.nvim
 **仓库**: `b0o/schemastore.nvim`
 **作用**: 提供 JSON schema 支持，为 package.json、tsconfig.json 等文件提供智能补全和验证
