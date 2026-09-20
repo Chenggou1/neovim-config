@@ -3,6 +3,8 @@ return {
 	event = "VeryLazy",
 	priority = 1000, -- 高优先级，确保在其他插件之前加载
 	config = function()
+		local diagnostic_dedupe = require("core.diagnostic_dedupe")
+
 		require("tiny-inline-diagnostic").setup({
 			preset = "ghost", -- 使用 ghost 样式（subtle, understated look）
 			options = {
@@ -28,6 +30,7 @@ return {
 				border = "rounded",
 				title = " Diagnostics ",
 				header = "",
+				format = diagnostic_dedupe.format,
 				source = "if_many",
 				severity_sort = true,
 				focusable = true,
