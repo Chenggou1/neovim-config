@@ -316,17 +316,13 @@ return {
 
 		dap.listeners.before.attach.dapui_config = open_dap_ui
 		dap.listeners.before.launch.dapui_config = open_dap_ui
-		dap.listeners.before.event_terminated.dapui_config = function()
-			leave_step_mode({ silent = true })
-			dapui.close()
-		end
-		dap.listeners.before.event_exited.dapui_config = function()
-			leave_step_mode({ silent = true })
-			dapui.close()
-		end
-		dap.listeners.before.disconnect.dap_step_mode = function()
+		local function finish_dap_session()
 			leave_step_mode({ silent = true })
 		end
+		-- terminated/exited 后保留调试布局和控制台输出，由用户通过 <leader>xu 手动关闭。
+		dap.listeners.before.event_terminated.dapui_config = finish_dap_session
+		dap.listeners.before.event_exited.dapui_config = finish_dap_session
+		dap.listeners.before.disconnect.dap_step_mode = finish_dap_session
 
 		vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DiagnosticError" })
 		vim.fn.sign_define("DapBreakpointCondition", { text = "◆", texthl = "DiagnosticWarn" })

@@ -34,16 +34,16 @@ return {
 	event = "VeryLazy",
 	dependencies = { "nvim-telescope/telescope.nvim" },
 	keys = {
-		{ "<leader>fl", "<cmd>UrlView buffer<CR>", desc = "查找并复制链接" },
+		{ "<leader>ll", "<cmd>UrlView buffer<CR>", desc = "列出并复制链接" },
 		{
-			"<leader>cl",
+			"<leader>lc",
 			function()
 				act_on_url_under_cursor(require("urlview.actions").clipboard)
 			end,
 			desc = "复制光标下的链接",
 		},
 		{
-			"<leader>cL",
+			"<leader>lo",
 			function()
 				act_on_url_under_cursor(copy_and_open)
 			end,

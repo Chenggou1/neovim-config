@@ -1,9 +1,9 @@
 return {
 	"hedyhli/outline.nvim",
-    lazy = true,
+	lazy = true,
 	cmd = { "Outline", "OutlineOpen" },
 	keys = {
-		{ "<leader>a", "<cmd>Outline<CR>", desc = "代码大纲" },
+		{ "<leader>co", "<cmd>Outline<CR>", desc = "代码大纲" },
 	},
 	opts = {
 		-- 大纲窗口配置

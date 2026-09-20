@@ -1,5 +1,9 @@
 local M = {}
 
+-- TODO(build-system): 将 <leader>m 提升为跨语言的项目构建接口。
+-- 保留稳定动作（prepare/build/run/clean/target/profile/args），并为
+-- CMake、Cargo、uv 分别提供显式适配器；不支持的动作必须明确提示。
+-- 在该模块落地前，现有映射仍直接调用 CMake 命令。
 M.keys = {
 	{ "<leader>mg", "<cmd>CMakeGenerate<CR>", desc = "CMake 生成/配置" },
 	{ "<leader>mb", "<cmd>CMakeBuild<CR>", desc = "CMake 构建" },

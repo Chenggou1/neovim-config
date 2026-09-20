@@ -13,4 +13,5 @@ return {
 	require("plugins.dev.comment"),
 	require("plugins.dev.rustaceanvim"),
 	require("plugins.dev.nvim_dap"),
+	require("plugins.dev.neotest"),
 }

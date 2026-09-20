@@ -1,6 +1,6 @@
 # 插件列表
 
-本配置使用的所有插件，按功能分类组织。
+本配置使用的插件及关键依赖，按功能分类组织。锁定版本以 `lazy-lock.json` 为准。
 
 ---
 
@@ -28,7 +28,7 @@
 
 ### indent-blankline.nvim
 **仓库**: `lukas-reineke/indent-blankline.nvim`
-**作用**: 缩进参考线，显示代码缩进层级，当前作用域使用绿色粗线高亮
+**作用**: 使用默认配置显示代码缩进参考线
 
 ### noice.nvim
 **仓库**: `folke/noice.nvim`
@@ -45,7 +45,7 @@
 
 ### nvim-lspconfig
 **仓库**: `neovim/nvim-lspconfig`
-**作用**: LSP 客户端配置，支持 Pyright (Python)、clangd (C/C++)、jsonls (JSON)、marksman (Markdown)。clangd 优先使用项目根目录；对没有编译数据库、编译 flags 或 Git 根目录的独立 C/C++ 文件，则以文件所在目录启动。
+**作用**: LSP 客户端配置，支持 Pyright (Python)、clangd (C/C++)、jsonls (JSON)、marksman (Markdown) 和 buf_ls (Protocol Buffers)。clangd 优先使用项目根目录；对没有编译数据库、编译 flags 或 Git 根目录的独立 C/C++ 文件，则以文件所在目录启动。
 
 ### hover.nvim
 **仓库**: `lewis6991/hover.nvim`
@@ -56,7 +56,7 @@
 **作用**: LSP 服务器、DAP、Linter、Formatter 的统一管理器
 
 ### mason-lspconfig.nvim
-**仓库**: `williamboman/mason-lspconfig.nvim`
+**仓库**: `mason-org/mason-lspconfig.nvim`
 **作用**: mason.nvim 和 nvim-lspconfig 的桥接器，自动安装 LSP 服务器
 
 ### mason-tool-installer.nvim
@@ -67,6 +67,10 @@
 **仓库**: `mfussenegger/nvim-dap`
 **作用**: 调试客户端，支持通过项目 uv 环境中的 debugpy 调试 Python，以及通过系统 `lldb-dap` 调试当前 C/C++ 文件。C/C++ 调试会自动使用 `-g -O0` 编译，不依赖 CMake。
 
+### nvim-dap-python
+**仓库**: `mfussenegger/nvim-dap-python`
+**作用**: nvim-dap 的 Python 适配层，通过项目的 uv 环境启动 debugpy
+
 ### nvim-dap-ui
 **仓库**: `rcarriga/nvim-dap-ui`
 **作用**: 显示变量、调用栈、断点、监视表达式和调试控制台。
@@ -74,6 +78,11 @@
 ### nvim-dap-virtual-text
 **仓库**: `theHamsta/nvim-dap-virtual-text`
 **作用**: 在源码旁显示当前调试会话中的变量值。
+
+### neotest
+**仓库**: `nvim-neotest/neotest`
+**作用**: 统一测试入口、测试概览、结果输出与 DAP 调试。当前显式支持 Python 和 Rust；其他语言不会使用通用兜底。
+**适配器**: `nvim-neotest/neotest-python`、rustaceanvim 内置 Neotest 适配器
 
 ### schemastore.nvim
 **仓库**: `b0o/schemastore.nvim`
@@ -109,7 +118,7 @@
 
 ### conform.nvim
 **仓库**: `stevearc/conform.nvim`
-**作用**: 统一代码格式化工具，支持 Lua (stylua)、JSON (prettier)、Markdown (prettier)、Python (ruff)、Protocol Buffers (buf)
+**作用**: 统一代码格式化工具，支持 Lua (stylua)、JSON/Markdown (prettier)、Python (ruff)、C/C++ (clang-format)、Protocol Buffers (buf)
 
 ### nvim-treesitter
 **仓库**: `nvim-treesitter/nvim-treesitter`
@@ -150,11 +159,15 @@
 
 ### neo-tree.nvim
 **仓库**: `nvim-neo-tree/neo-tree.nvim`
-**作用**: 文件树浏览器，支持文件系统、Git 状态、buffer 管理
+**作用**: 文件树浏览器，当前启用文件系统和 Git 状态两个数据源
 
 ### telescope.nvim
 **仓库**: `nvim-telescope/telescope.nvim`
 **作用**: 模糊搜索工具，用于查找文件、内容、buffer、寄存器等
+
+### telescope-ui-select.nvim
+**仓库**: `nvim-telescope/telescope-ui-select.nvim`
+**作用**: 使用 Telescope 界面承载 `vim.ui.select` 选择菜单
 
 ### flash.nvim
 **仓库**: `folke/flash.nvim`
@@ -162,7 +175,7 @@
 
 ### smart-splits.nvim
 **仓库**: `mrjones2014/smart-splits.nvim`
-**作用**: 智能窗口分割和导航，支持窗口间平滑跳转和大小调整
+**作用**: 统一 Neovim 窗口与 tmux pane 之间的方向导航
 
 ### window-picker
 **仓库**: `s1n7ax/nvim-window-picker`
@@ -170,7 +183,7 @@
 
 ### project.nvim
 **仓库**: `DrKJeff16/project.nvim`
-**作用**: 项目管理插件，自动检测和记录项目（通过 .git、pyproject.toml 等），提供最近项目列表，与启动面板集成
+**作用**: 以手动工作区模式维护最近项目，并与启动面板集成；从 Git 根目录启动时记录该目录，不会因进入语言子项目而自动改变工作目录
 
 ### outline.nvim
 **仓库**: `hedyhli/outline.nvim`
@@ -217,15 +230,15 @@
 
 ### persistence.nvim
 **仓库**: `folke/persistence.nvim`
-**作用**: 按工作目录保存并自动恢复文件、光标位置、标签页和窗口布局；额外恢复 Neo-tree 与 Sidekick Codex 窗口状态
+**作用**: 按工作目录保存并自动恢复文件、光标位置、标签页和窗口布局，并单独记录 Neo-tree 的开关状态
 
 ### sidekick.nvim
 **仓库**: `folke/sidekick.nvim`
-**作用**: 在 Neovim 中使用 Codex 等 Coding Agent，支持发送当前文件、选区位置和自定义提示；恢复工作区时重建最近的 Codex 会话
+**作用**: 在 Neovim 中使用 Codex 等 Coding Agent，支持发送当前文件、选区位置和自定义提示
 
 ### urlview.nvim
 **仓库**: `axieax/urlview.nvim`
-**作用**: 识别并列出当前文件中的 URL，通过 Telescope 搜索，选中后复制到系统剪贴板
+**作用**: 识别当前文件中的 URL；支持通过 Telescope 列出并复制，也可直接复制或打开光标下的链接
 
 ---
 
@@ -247,6 +260,10 @@
 
 ## 依赖库（Dependencies）
 
+### lazy.nvim
+**仓库**: `folke/lazy.nvim`
+**作用**: 插件管理器，负责安装、延迟加载、更新和锁定插件版本
+
 ### plenary.nvim
 **仓库**: `nvim-lua/plenary.nvim`
 **作用**: Lua 函数库，被 telescope、gitsigns 等多个插件依赖
@@ -262,6 +279,14 @@
 ### promise-async
 **仓库**: `kevinhwang91/promise-async`
 **作用**: 异步 Promise 库，被 nvim-ufo 依赖
+
+### nvim-nio
+**仓库**: `nvim-neotest/nvim-nio`
+**作用**: Neotest 与 nvim-dap-ui 使用的异步 IO 库
+
+### FixCursorHold.nvim
+**仓库**: `antoinemadec/FixCursorHold.nvim`
+**作用**: 为 Neotest 提供稳定的 CursorHold 更新行为
 
 ---
 

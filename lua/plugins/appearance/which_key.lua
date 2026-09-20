@@ -13,16 +13,17 @@ return {
 		wk.setup(opts)
 		wk.add({
 			-- 键位组
-			{ "<leader>a", group = "大纲" },
 			{ "<leader>b", group = "标签页" },
 			{ "<leader>c", group = "代码" },
-			{ "<leader>d", group = "Diff" },
+			{ "<leader>d", group = "诊断" },
 			{ "<leader>f", group = "查找" },
 			{ "<leader>g", group = "Git" },
+			{ "<leader>gm", group = "Git 合并" },
 			{ "<leader>k", group = "Codex / AI" },
-			{ "<leader>m", group = "CMake" },
-			{ "<leader>r", group = "运行" },
-			{ "<leader>t", group = "终端" },
+			{ "<leader>l", group = "链接" },
+			{ "<leader>m", group = "构建" },
+			{ "<leader>s", group = "终端" },
+			{ "<leader>t", group = "测试" },
 			{ "<leader>x", group = "调试" },
 			{ "<leader>z", group = "折叠" },
 
