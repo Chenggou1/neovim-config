@@ -11,4 +11,5 @@ return {
 	require("plugins.utility.persistence"),
 	require("plugins.utility.yanky"),
 	require("plugins.utility.urlview"),
+	require("plugins.utility.rip_substitute"),
 }

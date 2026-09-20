@@ -202,6 +202,12 @@
 **作用**: 高亮 TODO/FIX/HACK/WARN/NOTE 等注释，并支持通过 Telescope、quickfix 快速查找
 **依赖**: `nvim-lua/plenary.nvim`
 
+### nvim-rip-substitute
+**仓库**: `chrisgrieser/nvim-rip-substitute`
+**作用**: 在当前 buffer 中增量预览并执行查找替换，也可从同一弹窗扩展到当前工作目录
+**快捷键**: Normal/Visual 模式下使用 `<leader>fr`；弹窗内 `<CR>` 替换当前 buffer，`<S-CR>` 替换当前工作目录
+**依赖**: ripgrep ≥ 15.0.0；默认使用 PCRE2，建议安装带 PCRE2 支持的构建
+
 ### nvim-ufo
 **仓库**: `kevinhwang91/nvim-ufo`
 **作用**: 现代化代码折叠插件，使用 Treesitter 提供智能折叠，折叠时完整显示第一行内容（类似 VSCode），支持折叠预览和导航

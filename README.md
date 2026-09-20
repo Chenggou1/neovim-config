@@ -43,7 +43,7 @@
 | **LLDB / lldb-dap** | 调试 C/C++ | 调试 C/C++ 时必须 | Xcode/LLVM (macOS) / `apt install lldb` (Linux) |
 | **CMake** | 使用 `<leader>m` 构建 CMake 项目 | 使用 CMake 时必须 | `brew install cmake` / `apt install cmake` |
 | **Rust 工具链** | 运行、测试 Rust，并提供 rust-analyzer | 开发 Rust 时必须 | [rustup 官方安装说明](https://rustup.rs/) |
-| **ripgrep** | Telescope 全局搜索 | 强烈推荐 | `brew install ripgrep` / `apt install ripgrep` |
+| **ripgrep ≥ 15.0.0** | Telescope 全局搜索与查找替换；推荐启用 PCRE2 | 使用 `<leader>fr` 时必须 | `brew install ripgrep` / `cargo install ripgrep --features pcre2` |
 | **cppman** | 在 C++ hover 中查看 cppreference 手册与示例 | 开发 C++ 时推荐 | `brew install cppman` / `apt install cppman` |
 | **Nerd Font** | 图标显示 | 推荐 | 下载 [JetBrainsMono Nerd Font](https://www.nerdfonts.com/) |
 | **输入法后端** | Normal 模式自动切换英文 | 使用中文等输入法时推荐 | macOS: `macism`；Windows/WSL: `im-select.exe`；Linux: Fcitx5/Fcitx/IBus |
@@ -58,6 +58,8 @@ brew install --cask font-jetbrains-mono-nerd-font
 # Ubuntu/Debian
 sudo apt install git nodejs build-essential clangd clang-format lldb cmake ripgrep
 ```
+
+`nvim-rip-substitute` 要求 ripgrep ≥ 15.0.0。部分发行版的 `apt` 软件源可能提供较旧版本，请用 `rg --version` 检查；版本不足时可通过 Cargo 安装带 PCRE2 支持的新版。
 
 ### 自动管理的开发工具 ✅
 
@@ -102,6 +104,7 @@ Mason 会自动安装缺失的 LSP；格式化工具会在 Neovim 启动约 3 �
 | `<leader>e` | 打开/聚焦文件树 |
 | `<leader>ff` | 查找文件 |
 | `<leader>fg` | 全局搜索 |
+| `<leader>fr` | 查找并替换（Normal/Visual） |
 | `<leader>ft` | 按标签查找注释 |
 | `<leader>ll` | 列出并复制当前文件中的链接 |
 | `<leader>lc` | 复制光标下的链接 |

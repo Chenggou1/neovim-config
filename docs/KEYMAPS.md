@@ -103,7 +103,10 @@
 | `<leader>ff` | 查找文件 |
 | `<leader>fg` | 全局搜索，需要 ripgrep |
 | `<leader>fc` | 当前文件内搜索 |
+| `<leader>fr` | 查找并替换；支持 Normal 与 Visual 模式 |
 | `<leader>ft` | 按 TODO/FIX/WARN 等标签查找注释 |
+
+`<leader>fr` 会在当前 buffer 中直接预览替换结果。Normal 模式预填光标下的单词，Visual 模式预填选区；Visual Line 模式还会把替换范围限制在选中的行。弹窗内按 `<CR>` 替换当前 buffer，按 `<S-CR>` 替换当前工作目录。项目级替换不再占用单独的 `<leader>fR`。
 
 ## `<leader>g`：Git
 
